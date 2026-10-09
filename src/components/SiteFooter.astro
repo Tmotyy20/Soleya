@@ -1,0 +1,67 @@
+---
+import { getSiteSettings } from "@/lib/content";
+
+const settings = await getSiteSettings();
+const socials = [
+  { href: settings.instagram_url, label: "Instagram" },
+  { href: settings.linkedin_url, label: "LinkedIn" },
+  { href: settings.tiktok_url, label: "TikTok" },
+].filter((s) => s.href);
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-brown text-seashell">
+  <div class="stripes h-3 [--stripe:28px]" aria-hidden="true"></div>
+  <div class="mx-auto max-w-6xl px-5 py-12 grid gap-8 md:grid-cols-3 text-sm">
+    <div>
+      <p class="font-logo tracking-logo text-lg">SOLEYA</p>
+      <p class="mt-2 text-seashell/70">
+        Communication · Marketing · Création graphique
+      </p>
+    </div>
+    <div>
+      {settings.contact_email && (
+        <a
+          class="block hover:underline"
+          href={`mailto:${settings.contact_email}`}
+        >
+          {settings.contact_email}
+        </a>
+      )}
+      {settings.phone && (
+        <a
+          class="block hover:underline mt-1"
+          href={`tel:${settings.phone.replace(/\s/g, "")}`}
+        >
+          {settings.phone}
+        </a>
+      )}
+      {socials.length > 0 && (
+        <ul class="flex gap-4 mt-3">
+          {socials.map((s) => (
+            <li>
+              <a
+                href={s.href!}
+                class="hover:underline"
+                rel="noopener"
+                target="_blank"
+              >
+                {s.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+    <div class="md:text-right text-seashell/70">
+      <a href="/mentions-legales" class="hover:underline">
+        Mentions légales
+      </a>
+      <span aria-hidden="true"> · </span>
+      <a href="/confidentialite" class="hover:underline">
+        Confidentialité
+      </a>
+      <p class="mt-2">© {year} Soleya</p>
+    </div>
+  </div>
+</footer>

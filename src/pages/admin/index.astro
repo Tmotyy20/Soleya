@@ -1,0 +1,52 @@
+---
+import AdminLayout from "@/layouts/AdminLayout.astro";
+
+export const prerender = false;
+
+const supabase = Astro.locals.supabase;
+const count = async (table: "projects" | "client_logos" | "posts") =>
+  (await supabase.from(table).select("*", { count: "exact", head: true }))
+    .count ?? 0;
+
+const [projects, logos, posts, unread] = await Promise.all([
+  count("projects"),
+  count("client_logos"),
+  count("posts"),
+  supabase
+    .from("contact_messages")
+    .select("*", { count: "exact", head: true })
+    .eq("read", false)
+    .then((r) => r.count ?? 0),
+]);
+
+const cards = [
+  { href: "/admin/textes", label: "Textes des pages", value: "Modifier" },
+  { href: "/admin/projets", label: "Projets", value: projects },
+  { href: "/admin/logos", label: "Logos clients", value: logos },
+  { href: "/admin/blog", label: "Articles", value: posts },
+  { href: "/admin/messages", label: "Messages non lus", value: unread },
+];
+---
+
+<AdminLayout title="Tableau de bord">
+  <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {cards.map((c, i) => (
+      <li>
+        <a
+          href={c.href}
+          class:list={[
+            "block rounded-[1.5rem] p-6 hover:shadow-md transition-shadow",
+            i % 2 ? "bg-nebula" : "bg-butter",
+          ]}
+        >
+          <p class="text-sm text-brown-soft">{c.label}</p>
+          <p class="mt-2 font-serif text-4xl font-medium">{c.value}</p>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <p class="mt-10 text-sm text-brown-soft">
+    Après chaque modification, le site public est reconstruit automatiquement :
+    comptez environ une minute avant de voir le changement en ligne.
+  </p>
+</AdminLayout>

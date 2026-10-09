@@ -1,0 +1,211 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import logo from "@/assets/brand/logo-marron.png";
+import logoLight from "@/assets/brand/logo-bleu-jaune.png";
+import {
+  categoryLabels,
+  getClientLogos,
+  getFeaturedProjects,
+  getSections,
+} from "@/lib/content";
+import { mediaUrl } from "@/lib/supabase";
+
+export const prerender = true;
+
+const [t, projects, logos] = await Promise.all([
+  getSections(),
+  getFeaturedProjects(6),
+  getClientLogos(),
+]);
+
+const services = [
+  {
+    n: "01",
+    title: t["services.graphisme.title"],
+    text: t["services.graphisme.text"],
+    bg: "bg-butter",
+  },
+  {
+    n: "02",
+    title: t["services.cm.title"],
+    text: t["services.cm.text"],
+    bg: "bg-nebula",
+  },
+  {
+    n: "03",
+    title: t["services.ugc.title"],
+    text: t["services.ugc.text"],
+    bg: "bg-butter",
+  },
+];
+---
+
+<BaseLayout>
+  <!-- Hero : les rayures de la carte de visite -->
+  <section class="stripes [--stripe:56px] md:[--stripe:88px]">
+    <div class="mx-auto max-w-6xl px-5 py-20 md:py-28 flex flex-col items-center text-center">
+      <Image
+        src={logo}
+        alt=""
+        width={180}
+        height={184}
+        class="w-32 md:w-44 h-auto"
+        loading="eager"
+      />
+      <h1 class="mt-6 font-logo text-3xl md:text-5xl tracking-logo pl-[0.35em]">
+        SOLEYA
+      </h1>
+      <p class="mt-4 text-xs md:text-sm uppercase tracking-[0.25em]">
+        {t["home.hero.kicker"]}
+      </p>
+
+      <div class="mt-10 max-w-2xl rounded-[2rem] bg-seashell/95 px-6 py-8 md:px-12 md:py-10 shadow-[0_20px_60px_-30px_rgba(70,46,35,0.45)]">
+        <p class="font-serif text-3xl md:text-5xl leading-tight font-medium">
+          {t["home.hero.title"]}
+        </p>
+        <p class="mt-4 text-brown-soft leading-relaxed">
+          {t["home.hero.subtitle"]}
+        </p>
+        <a
+          href="/contact"
+          class="mt-8 inline-flex rounded-full bg-brown text-seashell px-7 py-3.5 text-sm hover:bg-brown-soft transition-colors"
+        >
+          {t["home.hero.cta"]}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section
+    class="mx-auto max-w-6xl px-5 py-20 md:py-28"
+    aria-labelledby="services-title"
+  >
+    <h2 id="services-title" class="font-serif text-4xl md:text-5xl font-medium">
+      {t["home.services.title"]}
+    </h2>
+    <ul class="mt-12 grid gap-6 md:grid-cols-3">
+      {services.map((s) => (
+        <li class={`${s.bg} rounded-[1.75rem] p-8 flex flex-col`}>
+          <span class="font-logo text-sm tracking-[0.2em] text-brown-soft">
+            {s.n}
+          </span>
+          <h3 class="mt-6 font-serif text-3xl font-medium">{s.title}</h3>
+          <p class="mt-3 leading-relaxed text-brown-soft">{s.text}</p>
+        </li>
+      ))}
+    </ul>
+    <a
+      href="/services"
+      class="mt-10 inline-block underline underline-offset-8 hover:text-brown-soft"
+    >
+      Découvrir les services
+    </a>
+  </section>
+
+  <!-- Projets -->
+  <section
+    class="bg-brown/[0.03] border-y border-brown/10"
+    aria-labelledby="work-title"
+  >
+    <div class="mx-auto max-w-6xl px-5 py-20 md:py-28">
+      <div class="flex items-end justify-between gap-6">
+        <h2 id="work-title" class="font-serif text-4xl md:text-5xl font-medium">
+          {t["home.work.title"]}
+        </h2>
+        <a
+          href="/portfolio"
+          class="shrink-0 underline underline-offset-8 hover:text-brown-soft"
+        >
+          Tout le portfolio
+        </a>
+      </div>
+
+      {projects.length > 0 ? (
+        <ul class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((p) => (
+            <li>
+              <a href={`/portfolio/${p.slug}`} class="group block">
+                <div class="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-nebula">
+                  {p.cover_image && (
+                    <img
+                      src={mediaUrl(p.cover_image)}
+                      alt={p.cover_alt}
+                      loading="lazy"
+                      decoding="async"
+                      class="size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  )}
+                </div>
+                <p class="mt-4 text-xs uppercase tracking-[0.2em] text-brown-soft">
+                  {categoryLabels[p.category]}
+                </p>
+                <h3 class="mt-1 font-serif text-2xl font-medium">{p.title}</h3>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="mt-12 rounded-[1.5rem] border border-dashed border-brown/30 p-10 text-center text-brown-soft">
+          Les projets apparaîtront ici une fois publiés depuis l'administration.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <!-- Logos clients -->
+  {logos.length > 0 && (
+    <section
+      class="mx-auto max-w-6xl px-5 py-20"
+      aria-labelledby="clients-title"
+    >
+      <h2
+        id="clients-title"
+        class="font-serif text-3xl md:text-4xl font-medium text-center"
+      >
+        {t["home.clients.title"]}
+      </h2>
+      <ul class="mt-12 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-10 items-center">
+        {logos.map((l) => (
+          <li class="flex justify-center">
+            <img
+              src={mediaUrl(l.image_path)}
+              alt={l.name}
+              loading="lazy"
+              decoding="async"
+              class="max-h-14 w-auto object-contain"
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <!-- Appel à l'action -->
+  <section class="bg-brown text-seashell">
+    <div class="mx-auto max-w-6xl px-5 py-20 md:py-24 grid gap-10 md:grid-cols-[auto_1fr] items-center">
+      <Image
+        src={logoLight}
+        alt=""
+        width={140}
+        height={143}
+        class="w-24 md:w-32 h-auto"
+      />
+      <div>
+        <h2 class="font-serif text-4xl md:text-5xl font-medium">
+          {t["home.cta.title"]}
+        </h2>
+        <p class="mt-4 text-seashell/80 max-w-xl leading-relaxed">
+          {t["home.cta.text"]}
+        </p>
+        <a
+          href="/contact"
+          class="mt-8 inline-flex rounded-full bg-butter text-brown px-7 py-3.5 text-sm hover:bg-nebula transition-colors"
+        >
+          Me contacter
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

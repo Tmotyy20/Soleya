@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import "@fontsource/montserrat/400.css";
+@import "@fontsource/montserrat/500.css";
+@import "@fontsource-variable/cormorant-garamond";
+@import "@fontsource/poppins/300.css";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+
+/* Charte Soleya : seuls ces tokens doivent être utilisés dans les composants. */
+@theme {
+  --color-brown: #462e23;
+  --color-brown-soft: #6b4f42;
+  --color-butter: #fef1b6;
+  --color-nebula: #bfdddc;
+  --color-seashell: #f1f1f1;
+
+  --font-logo: "Montserrat", ui-sans-serif, sans-serif;
+  --font-serif:
+    "Cormorant Garamond Variable", "Cormorant Garamond", ui-serif, Georgia,
+    serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    @apply bg-seashell text-brown font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-brown;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@utility stripes {
+  /* Rayures verticales Nebula / Butter : signature de la marque */
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-nebula) 0 var(--stripe, 64px),
+    var(--color-butter) var(--stripe, 64px) calc(var(--stripe, 64px) * 2)
+  );
+}
+
+@utility tracking-logo {
+  letter-spacing: 0.35em;
+}

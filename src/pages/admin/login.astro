@@ -1,0 +1,72 @@
+---
+import "@/styles/global.css";
+import { Image } from "astro:assets";
+import logo from "@/assets/brand/logo-marron.png";
+
+export const prerender = false;
+
+if (Astro.locals.user) return Astro.redirect("/admin");
+
+const errors: Record<string, string> = {
+  invalid: "Email ou mot de passe incorrect.",
+  forbidden: "Ce compte n'a pas accès à l'administration.",
+  missing: "Merci de remplir les deux champs.",
+};
+const error = errors[Astro.url.searchParams.get("error") ?? ""];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Connexion · Admin Soleya</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body class="min-h-dvh stripes [--stripe:72px] grid place-items-center p-5">
+    <main class="w-full max-w-sm rounded-[2rem] bg-seashell p-8 shadow-[0_20px_60px_-30px_rgba(70,46,35,0.5)] text-brown">
+      <div class="flex flex-col items-center">
+        <Image src={logo} alt="" width={64} height={66} class="size-16" />
+        <h1 class="mt-4 font-logo tracking-logo pl-[0.35em]">SOLEYA</h1>
+        <p class="text-sm text-brown-soft">Administration</p>
+      </div>
+
+      {error && (
+        <p role="alert" class="mt-6 rounded-xl bg-butter px-4 py-3 text-sm">
+          {error}
+        </p>
+      )}
+
+      <form
+        method="post"
+        action="/api/admin/login"
+        class="mt-6 flex flex-col gap-4"
+      >
+        <label class="flex flex-col gap-1.5 text-sm">
+          Email
+          <input
+            name="email"
+            type="email"
+            required
+            autocomplete="username"
+            class="rounded-xl border border-brown/20 bg-white px-4 py-3 focus:border-brown"
+          />
+        </label>
+        <label class="flex flex-col gap-1.5 text-sm">
+          Mot de passe
+          <input
+            name="password"
+            type="password"
+            required
+            autocomplete="current-password"
+            class="rounded-xl border border-brown/20 bg-white px-4 py-3 focus:border-brown"
+          />
+        </label>
+        <button class="mt-2 rounded-full bg-brown text-seashell py-3 text-sm hover:bg-brown-soft transition-colors">
+          Se connecter
+        </button>
+      </form>
+    </main>
+  </body>
+</html>

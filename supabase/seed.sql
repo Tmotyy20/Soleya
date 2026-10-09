@@ -64,7 +64,42 @@ Je vous accompagne dans la création de vos vêtements professionnels personnali
 Accompagnement à la production : fini le casse-tête logistique. Une fois le design validé, je vous confie mes meilleurs contacts de fournisseurs textiles et d''imprimeurs de confiance pour lancer la fabrication en toute sérénité.', true, 400),
   ('creation-textile', 'tx.intro.cta', 'Création textile · Bouton', 'Discutons de votre projet', false, 410),
   ('creation-textile', 'tx.visual.text', 'Création textile · Texte sur le t-shirt', 'Votre
-logo', true, 420)
+logo', true, 420),
+  ('logo-charte-graphique', 'lg.hero.title', 'Logo & charte · Titre', 'Logo & charte graphique', false, 430),
+  ('logo-charte-graphique', 'lg.intro.title', 'Logo & charte · Titre « À quoi ça sert ? »', 'À quoi ça sert ?', false, 440),
+  ('logo-charte-graphique', 'lg.intro.text', 'Logo & charte · Texte', 'Logo & charte graphique : marquer les esprits et inspirer confiance
+Ton identité visuelle est le premier levier de crédibilité de ton projet. Une charte graphique bien pensée pose des fondations solides :', true, 450),
+  ('logo-charte-graphique', 'lg.intro.bullets', 'Logo & charte · Liste (une ligne par point)', 'Image pro : tu inspires immédiatement confiance à tes prospects.
+Impact visuel : tu te démarques nettement de tes concurrents.
+Cohérence : un univers harmonieux sur tous tes supports (web, print, réseaux).', true, 460),
+  ('logo-charte-graphique', 'lg.intro.outro', 'Logo & charte · Conclusion', 'Je conçois pour vous un univers sur-mesure et stratégique, pensé pour captiver vos clients et valoriser votre offre.', true, 470),
+  ('logo-charte-graphique', 'lg.intro.cta', 'Logo & charte · Bouton', 'Discutons de votre projet', false, 480),
+  ('logo-charte-graphique', 'lg.gallery.title', 'Logo & charte · Titre galerie', 'Quelques projets', false, 490),
+  ('logo-charte-graphique', 'lg.gallery.subtitle', 'Logo & charte · Sous-titre galerie', 'Certains sont fictifs et viennent de projets d''école*', false, 500),
+  ('creation-contenu-ugc', 'ugc.hero.title', 'UGC · Titre', 'Création de contenu
+UGC', true, 510),
+  ('creation-contenu-ugc', 'ugc.intro.title', 'UGC · Titre « Qu''est-ce que c''est ? »', 'Qu’est-ce que c’est ?', false, 520),
+  ('creation-contenu-ugc', 'ugc.intro.text', 'UGC · Texte', 'Le contenu UGC (User-Generated Content) désigne des visuels et vidéos créés dans un style spontané, naturel et immersif, à l''image des publications de vrais utilisateurs. Loin des publicités traditionnelles très léchées et parfois perçues comme impersonnelles, l''UGC mise sur la preuve sociale et la sincérité.
+
+Voici pourquoi ce format est devenu un levier majeur dans une stratégie digitale :', true, 530),
+  ('creation-contenu-ugc', 'ugc.intro.bullets', 'UGC · Liste (une ligne par point)', 'Inspirer une confiance immédiate : vos prospects s''identifient bien plus facilement à une démonstration concrète et humaine qu''à un discours commercial classique.
+Capter l''attention sur les réseaux : taillés pour les formats verticaux (Instagram Reels, TikTok, Shorts), ces contenus courts et dynamiques stoppent le scroll dès les premières secondes.
+Booster les conversions : intégré dans vos campagnes publicitaires (Meta Ads, TikTok Ads) ou sur vos fiches produits, l''UGC lève les freins à l''achat et améliore nettement votre rendement.', true, 540),
+  ('creation-contenu-ugc', 'ugc.intro.cta', 'UGC · Bouton', 'Discutons de votre projet', false, 550),
+  ('creation-contenu-ugc', 'ugc.clients.title', 'UGC · Titre marques', 'J’ai déjà créé du contenu pour :', false, 560),
+  ('creation-contenu-ugc', 'ugc.clients.note', 'UGC · Note à côté des logos', 'Il me reste de la
+place pour vous', true, 570),
+  ('flyers-affiches', 'fl.hero.title', 'Flyers · Titre', 'Flyers & affiches', false, 580),
+  ('flyers-affiches', 'fl.intro.title', 'Flyers · Titre « Quel est l''intérêt ? »', 'Quel est l’intérêt ?', false, 590),
+  ('flyers-affiches', 'fl.intro.text', 'Flyers · Texte', 'À l''ère du tout-numérique, on sous-estime souvent la puissance d''un flyer bien pensé ou d''une affiche percutante. Pourtant, pour promouvoir un événement, le support physique offre une présence concrète que le web ne peut pas remplacer à lui seul.
+
+Voici ce qu''une création print apporte à votre stratégie :', true, 600),
+  ('flyers-affiches', 'fl.intro.bullets', 'Flyers · Liste (une ligne par point)', 'Ancrage local et visibilité directe : vous touchez votre cible là où elle vit et se déplace. Une affiche bien conçue attire l''œil instantanément dans l''espace public ou chez les commerçants partenaires.
+Impact mémoriel et toucher : un support physique crée un lien émotionnel plus fort qu''une simple publication éphémère. Un bel imprimé ne se scrolle pas : il se garde, se transmet et reste sous les yeux.
+Passerelle vers le digital : en y intégrant un QR code ou un lien court, votre flyer devient le pont parfait entre le monde réel et vos réseaux sociaux, votre billetterie ou votre site web.', true, 610),
+  ('flyers-affiches', 'fl.intro.outro', 'Flyers · Conclusion', 'Associer le print au digital, c''est doubler vos chances de capter l''attention et de marquer durablement les esprits.', true, 620),
+  ('flyers-affiches', 'fl.intro.cta', 'Flyers · Bouton', 'Discutons de votre projet', false, 630),
+  ('flyers-affiches', 'fl.gallery.title', 'Flyers · Titre galerie', 'Quelques réalisations', false, 640)
 on conflict (key) do nothing;
 
 update public.site_settings set

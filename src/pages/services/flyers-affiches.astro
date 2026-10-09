@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ServiceHero from "@/components/services/ServiceHero.astro";
+import ServiceIntro from "@/components/services/ServiceIntro.astro";
+import GallerySection from "@/components/services/GallerySection.astro";
+import ValuesSection from "@/components/ValuesSection.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import hero from "@/assets/services/flyers-hero.jpg";
+import cards from "@/assets/services/cartes-visite.jpg";
+import {
+  getProjectsByCategory,
+  getSections,
+  getSiteSettings,
+} from "@/lib/content";
+
+export const prerender = true;
+
+const [t, settings, projects] = await Promise.all([
+  getSections(),
+  getSiteSettings(),
+  getProjectsByCategory("print"),
+]);
+const s = (key: string) => t[key] ?? "";
+---
+
+<BaseLayout
+  title="Flyers & affiches · Soleya"
+  description="Création de flyers, affiches et cartes de visite : des supports print percutants pour promouvoir vos événements et relier le monde réel à vos réseaux."
+>
+  <ServiceHero
+    title={s("fl.hero.title")}
+    image={hero}
+    imageAlt="Graphiste dessinant une affiche à côté de son ordinateur"
+    tone="brown"
+  />
+  <ServiceIntro
+    title={s("fl.intro.title")}
+    text={s("fl.intro.text")}
+    bullets={s("fl.intro.bullets")}
+    outro={s("fl.intro.outro")}
+    cta={s("fl.intro.cta")}
+    theme="butter"
+    visualWidth="22.45rem"
+    textWidth="43.6rem"
+  >
+    <Image
+      slot="visual"
+      src={cards}
+      alt="Cartes de visite Soleya à rayures bleues et jaunes"
+      widths={[360, 720]}
+      sizes="(min-width: 768px) 359px, 80vw"
+      class="w-[80%] md:w-full mx-auto aspect-[359/654] object-cover"
+    />
+  </ServiceIntro>
+  <GallerySection
+    title={s("fl.gallery.title")}
+    category="print"
+    projects={projects}
+    layout="grid"
+  />
+  <ValuesSection
+    title={s("home.values.title")}
+    items={[1, 2, 3, 4].map((n) => s(`home.values.${n}`))}
+  />
+  <ContactSection
+    title={s("home.contact.title")}
+    subtitle={s("home.contact.subtitle")}
+    settings={settings}
+    band
+  />
+</BaseLayout>

@@ -7,46 +7,61 @@ interface Props {
   lead?: string;
   text: string;
   bullets: string; // une ligne par point
+  /** Paragraphe après la liste (optionnel) */
+  outro?: string;
   cta: string;
   /** Visuel de gauche ; sinon, utiliser le slot "visual" */
   image?: ImageMetadata;
   imageAlt?: string;
-  /** "brown" : fond brun clair, texte crème · "nebula" : fond bleu, texte marron */
-  theme?: "brown" | "nebula";
+  /**
+   * "brown" : fond brun clair, titre beurre, texte crème
+   * "nebula" : fond bleu, titre beurre, texte marron
+   * "butter" : fond beurre, titre et texte marron
+   */
+  theme?: "brown" | "nebula" | "butter";
   /** Largeur max de la colonne du visuel (ordinateur) */
   visualWidth?: string;
-  /** Plus d'espace vertical (maquette Création textile) */
-  spacious?: boolean;
+  /** Largeur max de la colonne de texte (ordinateur) */
+  textWidth?: string;
+  /** Plus d'espace vertical : true (8rem, Création textile) ou une valeur CSS (ex. "13rem") */
+  spacious?: boolean | string;
+  /** Liste resserrée, sans espace entre les points (maquette Logo & charte) */
+  compactList?: boolean;
 }
 const {
   title,
   lead,
   text,
   bullets,
+  outro,
   cta,
   image,
   imageAlt = "",
   theme = "brown",
   visualWidth = "21.75rem",
+  textWidth = "37.9rem",
   spacious = false,
+  compactList = false,
 } = Astro.props;
 const items = bullets
   .split("\n")
   .map((b) => b.trim())
   .filter(Boolean);
+
+const themes = {
+  brown: { section: "bg-brown-light text-cream", title: "text-butter" },
+  nebula: { section: "bg-nebula text-brown", title: "text-butter" },
+  butter: { section: "bg-butter text-brown", title: "text-brown" },
+} as const;
+const look = themes[theme];
 ---
 
-<section
-  class:list={[
-    theme === "brown" ? "bg-brown-light text-cream" : "bg-nebula text-brown",
-  ]}
-  aria-labelledby="intro-title"
->
+<section class={look.section} aria-labelledby="intro-title">
   <div
-    style={`--visual-w: ${visualWidth}`}
+    style={`--visual-w: ${visualWidth}; --text-w: ${textWidth}; --pad-y: ${typeof spacious === "string" ? spacious : "8rem"}`}
     class:list={[
-      "mx-auto max-w-[85rem] px-5 md:px-[7.8%] grid gap-12 md:grid-cols-[minmax(0,var(--visual-w))_minmax(0,37.9rem)] md:justify-between items-center",
-      spacious ? "py-16 md:py-[8rem]" : "py-16 md:py-[4.9rem]",
+      "mx-auto max-w-[85rem] px-5 md:px-[7.8%] grid gap-12 md:grid-cols-[minmax(0,var(--visual-w))_minmax(0,var(--text-w))] md:justify-between items-center",
+      spacious ? "py-16 md:py-[var(--pad-y)]" : "py-16 md:py-[4.9rem]",
     ]}
   >
     {image ? (
@@ -61,24 +76,41 @@ const items = bullets
       <slot name="visual" />
     )}
     <div>
-      <h2 id="intro-title" class="title text-butter text-4xl md:text-5xl">
+      <h2
+        id="intro-title"
+        class:list={["title text-4xl md:text-5xl", look.title]}
+      >
         {title}
       </h2>
       {lead && <p class="mt-4">{lead}</p>}
       <p
         class:list={[
           lead ? "mt-5" : "mt-4",
-          " whitespace-pre-line md:text-justify hyphens-auto",
+          "whitespace-pre-line md:text-justify hyphens-auto",
         ]}
         lang="fr"
       >
         {text}
       </p>
-      <ul class="mt-5 space-y-5 list-disc pl-7 md:text-justify" lang="fr">
+      <ul
+        class:list={[
+          "mt-5 list-disc pl-7 md:text-justify",
+          compactList ? "space-y-0" : "space-y-5",
+        ]}
+        lang="fr"
+      >
         {items.map((b) => (
           <li>{b}</li>
         ))}
       </ul>
+      {outro && (
+        <p
+          class="mt-5 whitespace-pre-line md:text-justify hyphens-auto"
+          lang="fr"
+        >
+          {outro}
+        </p>
+      )}
       <a
         href="#contact"
         class="btn mt-8 bg-brown text-cream sm:min-w-[19.9rem] hover:bg-brown/80"

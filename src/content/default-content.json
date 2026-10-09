@@ -224,6 +224,45 @@
       "label": "Community management · Note à côté des logos",
       "multiline": true,
       "content": "Il me reste de la\nplace pour vous"
+    },
+    {
+      "page": "creation-textile",
+      "key": "tx.hero.title",
+      "label": "Création textile · Titre",
+      "content": "Création textile"
+    },
+    {
+      "page": "creation-textile",
+      "key": "tx.intro.title",
+      "label": "Création textile · Titre « Qu'est-ce que c'est ? »",
+      "content": "Qu’est-ce que c’est ?"
+    },
+    {
+      "page": "creation-textile",
+      "key": "tx.intro.text",
+      "label": "Création textile · Texte",
+      "multiline": true,
+      "content": "Vous souhaitez marquer les esprits lors de votre prochain salon, lancer une collection capsule ou simplement fédérer votre équipe ? La création textile est un atout redoutable et tangible pour diffuser votre image de marque.\n\nJe vous accompagne dans la création de vos vêtements professionnels personnalisés (t-shirts, sweats, tote bags) pour tous vos événements d'entreprise ou vos besoins en goodies :"
+    },
+    {
+      "page": "creation-textile",
+      "key": "tx.intro.bullets",
+      "label": "Création textile · Liste (une ligne par point)",
+      "multiline": true,
+      "content": "Design de t-shirt sur-mesure : je conçois des visuels uniques, modernes et parfaitement alignés avec votre identité visuelle.\nAccompagnement à la production : fini le casse-tête logistique. Une fois le design validé, je vous confie mes meilleurs contacts de fournisseurs textiles et d'imprimeurs de confiance pour lancer la fabrication en toute sérénité."
+    },
+    {
+      "page": "creation-textile",
+      "key": "tx.intro.cta",
+      "label": "Création textile · Bouton",
+      "content": "Discutons de votre projet"
+    },
+    {
+      "page": "creation-textile",
+      "key": "tx.visual.text",
+      "label": "Création textile · Texte sur le t-shirt",
+      "multiline": true,
+      "content": "Votre\nlogo"
     }
   ],
   "settings": {

@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ServiceHero from "@/components/services/ServiceHero.astro";
+import ServiceIntro from "@/components/services/ServiceIntro.astro";
+import ValuesSection from "@/components/ValuesSection.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import hero from "@/assets/services/textile-hero.jpg";
+import tshirt from "@/assets/services/tshirt-jaune.png";
+import { getSections, getSiteSettings } from "@/lib/content";
+
+export const prerender = true;
+
+const [t, settings] = await Promise.all([getSections(), getSiteSettings()]);
+const s = (key: string) => t[key] ?? "";
+---
+
+<BaseLayout
+  title="Création textile · Soleya"
+  description="Création textile personnalisée : t-shirts, sweats et tote bags à votre image, du design sur-mesure jusqu'à la production avec des fournisseurs de confiance."
+>
+  <ServiceHero
+    title={s("tx.hero.title")}
+    image={hero}
+    imageAlt="T-shirts imprimés suspendus en bord de mer"
+    tone="brown"
+  />
+  <ServiceIntro
+    title={s("tx.intro.title")}
+    text={s("tx.intro.text")}
+    bullets={s("tx.intro.bullets")}
+    cta={s("tx.intro.cta")}
+    theme="nebula"
+    visualWidth="26.9rem"
+    spacious
+  >
+    <!-- T-shirt avec l'emplacement « Votre logo » -->
+    <div
+      slot="visual"
+      class="@container relative w-[80%] max-w-[27rem] md:w-full mx-auto aspect-[405/428]"
+    >
+      <Image
+        src={tshirt}
+        alt="T-shirt jaune personnalisable avec votre logo"
+        widths={[450, 900]}
+        sizes="(min-width: 768px) 430px, 80vw"
+        class="size-full object-contain"
+      />
+      <div
+        class="absolute left-1/2 -translate-x-1/2 top-[21.1%] w-[36.5%] h-[36.9%] rounded-[1rem] border border-brown flex items-center px-[8%]"
+        aria-hidden="true"
+      >
+        <p class="title text-[6.2cqw] whitespace-pre-line leading-tight">
+          {s("tx.visual.text")}
+        </p>
+      </div>
+    </div>
+  </ServiceIntro>
+  <ValuesSection
+    title={s("home.values.title")}
+    items={[1, 2, 3, 4].map((n) => s(`home.values.${n}`))}
+  />
+  <ContactSection
+    title={s("home.contact.title")}
+    subtitle={s("home.contact.subtitle")}
+    settings={settings}
+    band
+  />
+</BaseLayout>

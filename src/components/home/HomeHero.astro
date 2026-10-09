@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+}
+const { title, ctaPrimary, ctaSecondary } = Astro.props;
+---
+
+<section class="stripes">
+  <div class="mx-auto max-w-[85rem] px-5 md:px-[5.6%] min-h-[32rem] md:min-h-[41.5rem] flex flex-col justify-center py-20">
+    <h1 class="title text-[1.75rem] sm:text-5xl lg:text-[3.15rem] whitespace-pre-line">
+      {title}
+    </h1>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <a href="/#contact" class="btn bg-brown text-cream hover:bg-brown-light">
+        {ctaPrimary}
+      </a>
+      <a
+        href="/#projets"
+        class="btn bg-butter text-brown border border-brown sm:min-w-[19.9rem] hover:bg-cream"
+      >
+        {ctaSecondary}
+      </a>
+    </div>
+  </div>
+</section>

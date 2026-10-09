@@ -45,7 +45,8 @@ create type public.project_category as enum (
   'identite_visuelle',
   'print',
   'community_management',
-  'ugc'
+  'ugc',
+  'textile'
 );
 
 create type public.logo_type as enum ('cm', 'ugc');
@@ -134,6 +135,7 @@ create table public.site_settings (
   id int primary key default 1 check (id = 1),
   contact_email text,
   phone text,
+  instagram_handle text,
   instagram_url text,
   linkedin_url text,
   tiktok_url text,
@@ -146,9 +148,10 @@ insert into public.site_settings (id) values (1);
 -- ---------------------------------------------------------------------------
 create table public.contact_messages (
   id bigint generated always as identity primary key,
-  name text not null check (char_length(name) between 1 and 120),
+  last_name text not null check (char_length(last_name) between 1 and 120),
+  first_name text not null check (char_length(first_name) between 1 and 120),
   email text not null check (char_length(email) between 3 and 254 and email like '%@%'),
-  subject text check (char_length(subject) <= 200),
+  phone text check (char_length(phone) <= 30),
   message text not null check (char_length(message) between 1 and 5000),
   read boolean not null default false,
   created_at timestamptz not null default now()

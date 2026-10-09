@@ -1,67 +1,28 @@
 ---
-import { getSiteSettings } from "@/lib/content";
+import { Image } from "astro:assets";
+import logo from "@/assets/brand/logo-marron.png";
 
-const settings = await getSiteSettings();
-const socials = [
-  { href: settings.instagram_url, label: "Instagram" },
-  { href: settings.linkedin_url, label: "LinkedIn" },
-  { href: settings.tiktok_url, label: "TikTok" },
-].filter((s) => s.href);
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-brown text-seashell">
-  <div class="stripes h-3 [--stripe:28px]" aria-hidden="true"></div>
-  <div class="mx-auto max-w-6xl px-5 py-12 grid gap-8 md:grid-cols-3 text-sm">
-    <div>
-      <p class="font-logo tracking-logo text-lg">SOLEYA</p>
-      <p class="mt-2 text-seashell/70">
-        Communication · Marketing · Création graphique
-      </p>
-    </div>
-    <div>
-      {settings.contact_email && (
-        <a
-          class="block hover:underline"
-          href={`mailto:${settings.contact_email}`}
-        >
-          {settings.contact_email}
+<footer class="bg-butter text-brown">
+  <div class="mx-auto max-w-[85rem] px-5 py-14 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+    <a href="/" class="flex items-center gap-3" aria-label="Soleya, accueil">
+      <Image src={logo} alt="" width={44} height={45} class="size-11" />
+      <span class="title text-lg tracking-[0.3em]">Soleya</span>
+    </a>
+    <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+      <li>
+        <a href="/mentions-legales" class="hover:underline">
+          Mentions légales
         </a>
-      )}
-      {settings.phone && (
-        <a
-          class="block hover:underline mt-1"
-          href={`tel:${settings.phone.replace(/\s/g, "")}`}
-        >
-          {settings.phone}
+      </li>
+      <li>
+        <a href="/confidentialite" class="hover:underline">
+          Politique de confidentialité
         </a>
-      )}
-      {socials.length > 0 && (
-        <ul class="flex gap-4 mt-3">
-          {socials.map((s) => (
-            <li>
-              <a
-                href={s.href!}
-                class="hover:underline"
-                rel="noopener"
-                target="_blank"
-              >
-                {s.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-    <div class="md:text-right text-seashell/70">
-      <a href="/mentions-legales" class="hover:underline">
-        Mentions légales
-      </a>
-      <span aria-hidden="true"> · </span>
-      <a href="/confidentialite" class="hover:underline">
-        Confidentialité
-      </a>
-      <p class="mt-2">© {year} Soleya</p>
-    </div>
+      </li>
+    </ul>
+    <p>© {year} Soleya</p>
   </div>
 </footer>

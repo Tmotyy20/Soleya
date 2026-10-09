@@ -31,7 +31,7 @@ const current = Astro.url.pathname;
     <aside class="bg-brown text-seashell md:min-h-dvh flex flex-col">
       <div class="stripes h-2 [--stripe:20px]" aria-hidden="true"></div>
       <div class="px-6 py-6">
-        <a href="/admin" class="font-logo tracking-logo">
+        <a href="/admin" class="title tracking-[0.3em]">
           SOLEYA
         </a>
         <p class="text-xs text-seashell/60 mt-1">Administration</p>
@@ -70,7 +70,7 @@ const current = Astro.url.pathname;
       </div>
     </aside>
     <main class="p-6 md:p-10 max-w-5xl">
-      <h1 class="font-serif text-4xl font-medium text-brown">{title}</h1>
+      <h1 class="title text-3xl text-brown">{title}</h1>
       <div class="mt-8 text-brown">
         <slot />
       </div>

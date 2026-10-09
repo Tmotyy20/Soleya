@@ -1,0 +1,41 @@
+{
+  "_comment": "Source unique des textes par défaut (issus de la maquette). Utilisé en repli sans Supabase et pour générer supabase/seed.sql (npm run seed:sql).",
+  "sections": [
+    { "page": "home", "key": "home.hero.title", "label": "Accueil · Titre principal", "multiline": true, "content": "Freelance\ncommunication\ncréative & stratégique" },
+    { "page": "home", "key": "home.hero.cta_primary", "label": "Accueil · Bouton principal", "content": "Discutons de votre projet" },
+    { "page": "home", "key": "home.hero.cta_secondary", "label": "Accueil · Bouton secondaire", "content": "Découvrir les projets" },
+
+    { "page": "home", "key": "home.services.title", "label": "Services · Titre", "content": "Ce que je propose" },
+    { "page": "home", "key": "home.services.subtitle", "label": "Services · Sous-titre", "content": "Une communication à 360° pour garantir une cohérence" },
+    { "page": "home", "key": "home.services.1", "label": "Services · Carte 1", "content": "Community management" },
+    { "page": "home", "key": "home.services.2", "label": "Services · Carte 2", "content": "Création textiles" },
+    { "page": "home", "key": "home.services.3", "label": "Services · Carte 3", "multiline": true, "content": "Flyers,\naffiches, cartes" },
+    { "page": "home", "key": "home.services.4", "label": "Services · Carte 4", "content": "Création contenu" },
+    { "page": "home", "key": "home.services.5", "label": "Services · Carte 5", "content": "Logo / charte graphique" },
+    { "page": "home", "key": "home.services.6", "label": "Services · Carte 6", "multiline": true, "content": "Stratégie\nmarketing" },
+    { "page": "home", "key": "home.services.cta", "label": "Services · Bouton", "content": "Travaillons ensemble" },
+
+    { "page": "home", "key": "home.about.title", "label": "À propos · Titre", "content": "À propos de moi" },
+    { "page": "home", "key": "home.about.text", "label": "À propos · Texte", "multiline": true, "content": "Derrière SOLEYA, c’est moi, Elsa. ☀️\nPassionnée par la communication, la création de contenu et tout ce qui permet de donner vie à une idée, j’ai créé SOLEYA avec une envie simple : aider les marques et les entreprises à construire une communication qui leur ressemble.\n\nJ’ai une approche à la fois créative et stratégique : une belle image, c’est bien, mais une communication qui a du sens et qui parle vraiment à votre audience, c’est encore mieux.\n\nAvec SOLEYA, je vous accompagne selon vos besoins, que vous ayez simplement besoin de quelques contenus, d’un coup de frais sur votre identité visuelle ou d’un accompagnement plus global sur votre communication.\n\nMon objectif ? Faire de votre communication un véritable reflet de votre projet : professionnelle, singulière et surtout, pleine de vie.\nAlors, on fait rayonner votre projet ? ☀️" },
+    { "page": "home", "key": "home.about.cta", "label": "À propos · Bouton", "content": "En savoir plus sur moi" },
+
+    { "page": "home", "key": "home.projects.title", "label": "Projets · Titre", "content": "Mes projets" },
+    { "page": "home", "key": "home.projects.1", "label": "Projets · Carte 1", "content": "Community management" },
+    { "page": "home", "key": "home.projects.2", "label": "Projets · Carte 2", "content": "Création textiles" },
+    { "page": "home", "key": "home.projects.3", "label": "Projets · Carte 3", "content": "Logo / charte graphique" },
+
+    { "page": "home", "key": "home.values.title", "label": "Valeurs · Titre", "content": "Mes valeurs" },
+    { "page": "home", "key": "home.values.1", "label": "Valeurs · 1", "content": "Créativité & audace" },
+    { "page": "home", "key": "home.values.2", "label": "Valeurs · 2", "content": "Authenticité" },
+    { "page": "home", "key": "home.values.3", "label": "Valeurs · 3", "content": "Rigueur" },
+    { "page": "home", "key": "home.values.4", "label": "Valeurs · 4", "content": "Passion" },
+
+    { "page": "home", "key": "home.contact.title", "label": "Contact · Titre", "multiline": true, "content": "Un projet en tête ?\nRévélons ensemble votre potentiel" },
+    { "page": "home", "key": "home.contact.subtitle", "label": "Contact · Sous-titre", "content": "Envoyez-moi un message et voyons ensemble comment je peux vous aider" }
+  ],
+  "settings": {
+    "contact_email": "soleya-communication@gmail.com",
+    "instagram_handle": "soleya",
+    "instagram_url": "https://www.instagram.com/soleya/"
+  }
+}

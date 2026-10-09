@@ -28,8 +28,8 @@ const error = errors[Astro.url.searchParams.get("error") ?? ""];
     <main class="w-full max-w-sm rounded-[2rem] bg-seashell p-8 shadow-[0_20px_60px_-30px_rgba(70,46,35,0.5)] text-brown">
       <div class="flex flex-col items-center">
         <Image src={logo} alt="" width={64} height={66} class="size-16" />
-        <h1 class="mt-4 font-logo tracking-logo pl-[0.35em]">SOLEYA</h1>
-        <p class="text-sm text-brown-soft">Administration</p>
+        <h1 class="mt-4 title tracking-[0.3em] pl-[0.3em]">SOLEYA</h1>
+        <p class="text-sm text-brown-light">Administration</p>
       </div>
 
       {error && (
@@ -63,7 +63,7 @@ const error = errors[Astro.url.searchParams.get("error") ?? ""];
             class="rounded-xl border border-brown/20 bg-white px-4 py-3 focus:border-brown"
           />
         </label>
-        <button class="mt-2 rounded-full bg-brown text-seashell py-3 text-sm hover:bg-brown-soft transition-colors">
+        <button class="mt-2 rounded-full bg-brown text-seashell py-3 text-sm hover:bg-brown-light transition-colors">
           Se connecter
         </button>
       </form>

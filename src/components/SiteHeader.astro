@@ -1,49 +1,49 @@
 ---
 import { Image } from "astro:assets";
-import logo from "@/assets/brand/logo-marron.png";
+import logo from "@/assets/brand/logo-bleu-jaune.png";
+import logotype from "@/assets/brand/logotype-soleya.png";
 
 const links = [
-  { href: "/services", label: "Services" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/blog", label: "Blog" },
-  { href: "/a-propos", label: "À propos" },
+  { href: "/", label: "Accueil" },
+  { href: "/#a-propos", label: "À propos" },
+  { href: "/#projets", label: "Projets" },
 ];
-const current = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-40 bg-seashell/90 backdrop-blur border-b border-brown/10">
-  <div class="mx-auto max-w-6xl px-5 h-18 flex items-center justify-between gap-6">
-    <a href="/" class="flex items-center gap-3" aria-label="Soleya, accueil">
+<header class="sticky top-0 z-40 bg-brown">
+  <div class="mx-auto max-w-[85rem] px-5 h-20 md:h-24 flex items-center justify-between gap-6">
+    <a href="/" class="flex items-center gap-4" aria-label="Soleya, accueil">
       <Image
         src={logo}
         alt=""
-        width={40}
-        height={41}
-        class="size-10"
+        width={56}
+        height={57}
+        class="size-12 md:size-14"
         loading="eager"
       />
-      <span class="font-logo text-lg tracking-logo">SOLEYA</span>
+      <Image
+        src={logotype}
+        alt=""
+        width={120}
+        height={17}
+        class="h-3.5 md:h-[1.1rem] w-auto"
+        loading="eager"
+      />
     </a>
 
     <nav aria-label="Navigation principale" class="hidden md:block">
-      <ul class="flex items-center gap-8 text-sm">
+      <ul class="flex items-center gap-7 text-lg uppercase text-cream">
         {links.map((l) => (
           <li>
-            <a
-              href={l.href}
-              class:list={[
-                "hover:text-brown-soft transition-colors",
-                current.startsWith(l.href) && "underline underline-offset-8",
-              ]}
-            >
+            <a href={l.href} class="hover:text-butter transition-colors">
               {l.label}
             </a>
           </li>
         ))}
-        <li>
+        <li class="ml-2">
           <a
-            href="/contact"
-            class="rounded-full bg-brown text-seashell px-5 py-2.5 hover:bg-brown-soft transition-colors"
+            href="/#contact"
+            class="btn bg-butter text-brown font-title font-bold text-lg border border-brown hover:bg-nebula"
           >
             Contact
           </a>
@@ -52,11 +52,11 @@ const current = Astro.url.pathname;
     </nav>
 
     <details class="md:hidden relative">
-      <summary class="list-none cursor-pointer rounded-full border border-brown/30 px-4 py-2 text-sm">
+      <summary class="list-none cursor-pointer rounded-full bg-butter text-brown px-5 py-2 text-sm uppercase">
         Menu
       </summary>
-      <ul class="absolute right-0 mt-3 w-56 rounded-2xl bg-seashell shadow-lg border border-brown/10 p-3 flex flex-col">
-        {[...links, { href: "/contact", label: "Contact" }].map((l) => (
+      <ul class="absolute right-0 mt-3 w-56 rounded-2xl bg-cream shadow-lg p-3 flex flex-col uppercase text-sm">
+        {[...links, { href: "/#contact", label: "Contact" }].map((l) => (
           <li>
             <a href={l.href} class="block rounded-xl px-4 py-3 hover:bg-butter">
               {l.label}

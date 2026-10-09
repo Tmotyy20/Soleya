@@ -174,20 +174,18 @@ for (const [src, slug, title, category] of projects) {
     src,
     `projects/${slug}${extname(src).toLowerCase()}`,
   );
-  const { error } = await supabase
-    .from("projects")
-    .upsert(
-      {
-        slug,
-        title,
-        category,
-        cover_image: path,
-        cover_alt: title,
-        position: position++,
-        published: false,
-      },
-      { onConflict: "slug", ignoreDuplicates: true },
-    );
+  const { error } = await supabase.from("projects").upsert(
+    {
+      slug,
+      title,
+      category,
+      cover_image: path,
+      cover_alt: title,
+      position: position++,
+      published: false,
+    },
+    { onConflict: "slug", ignoreDuplicates: true },
+  );
   if (error) throw error;
   console.log("projet", slug);
 }

@@ -3,7 +3,7 @@
 //   npx supabase gen types typescript --project-id <id> > src/lib/database.types.ts
 
 export type ProjectCategory =
-  "identite_visuelle" | "print" | "community_management" | "ugc";
+  "identite_visuelle" | "print" | "community_management" | "ugc" | "textile";
 export type LogoType = "cm" | "ugc";
 
 type Table<Row, Insert = Partial<Row>> = {
@@ -77,6 +77,7 @@ export type SiteSettings = {
   id: 1;
   contact_email: string | null;
   phone: string | null;
+  instagram_handle: string | null;
   instagram_url: string | null;
   linkedin_url: string | null;
   tiktok_url: string | null;
@@ -85,9 +86,10 @@ export type SiteSettings = {
 
 export type ContactMessage = {
   id: number;
-  name: string;
+  last_name: string;
+  first_name: string;
   email: string;
-  subject: string | null;
+  phone: string | null;
   message: string;
   read: boolean;
   created_at: string;

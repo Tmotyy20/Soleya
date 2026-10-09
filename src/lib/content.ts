@@ -1,7 +1,7 @@
 // Lecture des contenus au moment du build (pages publiques statiques).
 // Sans Supabase configuré (ex. premier `npm run dev`), on retombe sur les textes par défaut.
 import { createPublicClient } from "./supabase";
-import { defaultSections } from "./defaults";
+import { defaultSections, defaultSettings } from "./defaults";
 import type { ClientLogo, Project, SiteSettings } from "./database.types";
 
 export async function getSections(page?: string) {
@@ -45,19 +45,20 @@ export async function getClientLogos(): Promise<ClientLogo[]> {
 
 export async function getSiteSettings(): Promise<Partial<SiteSettings>> {
   const supabase = createPublicClient();
-  if (!supabase) return {};
+  if (!supabase) return defaultSettings;
   const { data, error } = await supabase
     .from("site_settings")
     .select("*")
     .eq("id", 1)
     .maybeSingle();
   if (error) throw new Error(`Supabase site_settings : ${error.message}`);
-  return data ?? {};
+  return data ?? defaultSettings;
 }
 
 export const categoryLabels: Record<Project["category"], string> = {
   identite_visuelle: "Identité visuelle",
   print: "Print",
   community_management: "Community management",
-  ugc: "UGC",
+  ugc: "Création de contenu (UGC)",
+  textile: "Création textiles",
 };

@@ -5,7 +5,7 @@ Objectifs : présenter les services, valoriser le portfolio, convertir les visit
 La cliente doit pouvoir **modifier elle-même** les contenus via une page `/admin`.
 
 ## Stack (validée)
-- **Astro** + adaptateur **@astrojs/cloudflare**
+- **Astro 7** + adaptateur **@astrojs/cloudflare v14** (déploiement en Cloudflare Worker avec assets statiques)
   - Pages publiques **prérendues en statique** (`export const prerender = true`)
   - `/admin` et routes API rendues **côté serveur** (Cloudflare Workers)
 - **Tailwind CSS** pour le style
@@ -13,7 +13,9 @@ La cliente doit pouvoir **modifier elle-même** les contenus via une page `/admi
   - Postgres : contenus du site
   - Auth : connexion de la cliente à `/admin` (email + mot de passe, pas d'inscription publique)
   - Storage : images du portfolio, logos, images d'articles
-- **Cloudflare Pages** : hébergement + nom de domaine
+- **Cloudflare Workers** : hébergement + nom de domaine (`wrangler.jsonc` au format Workers, pas de clé `pages_build_output_dir`)
+- Pas de sessions Astro (`session: false`) : l'auth admin passe par les cookies Supabase
+- URLs sans barre finale (`trailingSlash: "never"`, `build.format: "file"`)
 - Îlots interactifs de l'admin : à choisir au moment du développement (React ou Svelte), seulement dans `/admin`
 
 ## Flux de publication
@@ -40,7 +42,7 @@ Pourquoi : performance et SEO maximum, et le site public **ne dépend pas de Sup
 ## Commandes
 - `npm run dev` : serveur local
 - `npm run build` : build de production
-- `npm run preview` : prévisualiser le build (runtime Cloudflare)
+- `npm run preview` : prévisualiser le build dans le runtime Cloudflare (`astro preview`)
 
 ## Identité visuelle
 

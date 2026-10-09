@@ -1,0 +1,79 @@
+---
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+const user = Astro.locals.user;
+const nav = [
+  { href: "/admin", label: "Tableau de bord" },
+  { href: "/admin/textes", label: "Textes des pages" },
+  { href: "/admin/projets", label: "Portfolio" },
+  { href: "/admin/logos", label: "Logos clients" },
+  { href: "/admin/blog", label: "Blog" },
+  { href: "/admin/messages", label: "Messages" },
+  { href: "/admin/reglages", label: "Réglages" },
+];
+const current = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title} · Admin Soleya</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body class="min-h-dvh bg-seashell md:grid md:grid-cols-[16rem_1fr]">
+    <aside class="bg-brown text-seashell md:min-h-dvh flex flex-col">
+      <div class="stripes h-2 [--stripe:20px]" aria-hidden="true"></div>
+      <div class="px-6 py-6">
+        <a href="/admin" class="title tracking-[0.3em]">
+          SOLEYA
+        </a>
+        <p class="text-xs text-seashell/60 mt-1">Administration</p>
+      </div>
+      <nav aria-label="Administration" class="px-3 flex-1">
+        <ul class="flex md:flex-col gap-1 overflow-x-auto pb-3 md:pb-0">
+          {nav.map((n) => (
+            <li>
+              <a
+                href={n.href}
+                class:list={[
+                  "block whitespace-nowrap rounded-xl px-4 py-2.5 text-sm transition-colors",
+                  current === n.href
+                    ? "bg-seashell text-brown"
+                    : "hover:bg-seashell/10",
+                ]}
+              >
+                {n.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="px-6 py-6 text-xs text-seashell/70 hidden md:block">
+        {user && <p class="truncate">{user.email}</p>}
+        <form method="post" action="/api/admin/logout" class="mt-2">
+          <button class="underline hover:text-seashell">Se déconnecter</button>
+        </form>
+        <a
+          href="/"
+          class="block mt-2 underline hover:text-seashell"
+          target="_blank"
+        >
+          Voir le site
+        </a>
+      </div>
+    </aside>
+    <main class="p-6 md:p-10 max-w-5xl">
+      <h1 class="title text-3xl text-brown">{title}</h1>
+      <div class="mt-8 text-brown">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>

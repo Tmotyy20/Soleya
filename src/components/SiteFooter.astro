@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import logo from "@/assets/brand/logo-marron.png";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-butter text-brown">
+  <div class="mx-auto max-w-[85rem] px-5 py-14 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+    <a href="/" class="flex items-center gap-3" aria-label="Soleya, accueil">
+      <Image src={logo} alt="" width={44} height={45} class="size-11" />
+      <span class="title text-lg tracking-[0.3em]">Soleya</span>
+    </a>
+    <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+      <li>
+        <a href="/mentions-legales" class="hover:underline">
+          Mentions légales
+        </a>
+      </li>
+      <li>
+        <a href="/confidentialite" class="hover:underline">
+          Politique de confidentialité
+        </a>
+      </li>
+    </ul>
+    <p>© {year} Soleya</p>
+  </div>
+</footer>

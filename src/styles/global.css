@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import "@fontsource/montserrat/700.css";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+
+/* Charte Soleya : seuls ces tokens doivent être utilisés dans les composants. */
+@theme {
+  --color-brown: #462e23;
+  --color-brown-light: #745144;
+  --color-butter: #fef1b6;
+  --color-nebula: #bfdddc;
+  --color-seashell: #f1f1f1;
+  --color-cream: #fcfdf6;
+
+  /* Titres : Montserrat Bold en majuscules · Textes : Poppins Regular */
+  --font-title: "Montserrat", ui-sans-serif, sans-serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.75rem;
+}
+
+@layer base {
+  html {
+    @apply bg-cream text-brown font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-brown;
+  }
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+/* Titre de section : Montserrat Bold, majuscules */
+@utility title {
+  font-family: var(--font-title);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+/* Rayures verticales Nebula / Butter : signature de la marque.
+   Largeur par défaut calée sur la maquette (152 px pour 1366 px de large). */
+@utility stripes {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-nebula) 0 var(--stripe, max(11.12vw, 56px)),
+    var(--color-butter) var(--stripe, max(11.12vw, 56px))
+      calc(var(--stripe, max(11.12vw, 56px)) * 2)
+  );
+}
+
+/* Boutons en pilule de la maquette */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.375rem;
+  padding-inline: 1.75rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+  transition:
+    background-color 150ms,
+    color 150ms;
+}

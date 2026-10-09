@@ -1,0 +1,47 @@
+---
+import "@/styles/global.css";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Soleya · Communication, marketing & création graphique",
+  description = "Soleya accompagne les marques et les entreprises en communication, community management, création de contenu UGC et création graphique.",
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="theme-color" content="#462E23" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body class="min-h-dvh flex flex-col">
+    <a
+      href="#contenu"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-brown focus:text-seashell focus:px-4 focus:py-2 rounded-full"
+    >
+      Aller au contenu
+    </a>
+    <SiteHeader />
+    <main id="contenu" class="flex-1">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

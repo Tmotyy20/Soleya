@@ -45,35 +45,44 @@ Pourquoi : performance et SEO maximum, et le site public **ne dépend pas de Sup
 ## Identité visuelle
 
 ### Couleurs
-| Token      | Nom           | Hex       | Usage                              |
-|------------|---------------|-----------|------------------------------------|
-| `brown`    | Dark Brown    | `#462E23` | Texte principal, logo, boutons     |
-| `butter`   | Butter Yellow | `#FEF1B6` | Fonds de section, rayures          |
-| `nebula`   | Nebula        | `#BFDDDC` | Fonds de section, rayures, accents |
-| `seashell` | Seashell      | `#F1F1F1` | Fond principal                     |
+| Token         | Nom           | Hex       | Usage                                      |
+|---------------|---------------|-----------|--------------------------------------------|
+| `brown`       | Dark Brown    | `#462E23` | Texte principal, header, boutons           |
+| `brown-light` | (maquette)    | `#745144` | Cartes secondaires, survols                |
+| `butter`      | Butter Yellow | `#FEF1B6` | Rayures, boutons secondaires, footer       |
+| `nebula`      | Nebula        | `#BFDDDC` | Rayures, fonds de section                  |
+| `seashell`    | Seashell      | `#F1F1F1` | Fonds de cartes photo                      |
+| `cream`       | (maquette)    | `#FCFDF6` | Fond principal, cartes, formulaires        |
 
-Le texte est toujours en `brown` sur les fonds clairs. Jamais de texte blanc ou jaune sur `nebula` ou `butter`.
+Contraste : la maquette met du texte blanc sur `nebula` (titre « Ce que je propose », coordonnées). Ce contraste est insuffisant (AA non atteint) : à valider avec la cliente.
 
-### Typographie (identifiée visuellement, à confirmer)
-- Logotype "SOLEYA" : sans-serif géométrique, capitales très espacées (proche de **Montserrat**)
-- Titres : serif élégante (proche de **Cormorant Garamond**)
-- Texte courant : sans-serif (proche de **Poppins**)
+### Typographie (confirmée)
+- **Titres** : Montserrat **Bold**, en **majuscules** (utilitaire `title`)
+- **Textes** : Poppins Regular
+- Logotype "SOLEYA" du header : image (`src/assets/brand/logotype-soleya.png`)
 - Polices auto-hébergées (`@fontsource`) : pas d'appel à Google Fonts (RGPD)
 
 ### Motifs et ambiance
-- **Rayures verticales** alternées Nebula / Butter, façon parasol ou transat. C'est la signature de la marque, à faire en CSS (`repeating-linear-gradient`).
-- Logo : soleil stylisé avec un "S" central. Version marron (fonds clairs), version bleu/jaune (fond marron).
-- Ambiance : Méditerranée, été, rétro chic, lumineux, doux.
-- L'admin reprend la charte, en plus sobre et fonctionnel.
+- **Rayures verticales** alternées Nebula / Butter (utilitaire `stripes`), largeur calée sur la maquette (152 px pour 1366 px, soit ~11,1vw)
+- Boutons en pilule (utilitaire `btn`), cartes arrondies (`--radius-card`)
+- Logo : soleil stylisé avec un "S" central. Version marron (fonds clairs), version bleu/jaune (header marron)
+- Ambiance : Méditerranée, été, rétro chic, lumineux, doux
+- L'admin reprend la charte, en plus sobre et fonctionnel
+
+### Maquettes
+- Accueil : `design/maquette-accueil.png` (référence pour toute modification de la page d'accueil)
 
 ## Arborescence du site public
-1. **Accueil** : hero rayé + logo + accroche, aperçu des services, sélection de projets, bandeau logos clients, CTA contact
-2. **Services** : Création graphique (logo, charte, affiches, flyers), Community management, UGC
-3. **Portfolio** : grille filtrable (Identité visuelle, Print, Community management, UGC) + page détail projet
-4. **Blog** : liste + page article
-5. **À propos** : photo, parcours, valeurs
-6. **Contact** : formulaire, coordonnées, réseaux sociaux
-7. Mentions légales et politique de confidentialité (obligatoires)
+Navigation (maquette) : Accueil · À propos · Projets · Contact
+
+1. **Accueil** (fait) : hero rayé, « Ce que je propose » (6 services), à propos, mes projets, mes valeurs, formulaire de contact
+2. **À propos** (`/a-propos`) : page détaillée (lien « En savoir plus sur moi »)
+3. **Projets** (`/projets`) : grille filtrable (Identité visuelle, Print, Community management, Création de contenu, Création textiles) + page détail projet
+4. **Blog** : liste + page article (pas encore dans la navigation de la maquette)
+5. **Contact** : section en bas de l'accueil (`/#contact`) ; les messages sont enregistrés dans `contact_messages`
+6. Mentions légales et politique de confidentialité (obligatoires, liens dans le footer)
+
+Textes de l'accueil : clés `home.*` de `page_sections`. Source unique des valeurs par défaut : `src/content/default-content.json` ; régénérer `supabase/seed.sql` avec `npm run seed:sql` après modification.
 
 ## Assets initiaux
 Source : dossier fourni par la cliente (affiches, chartes, logos clients CM, logos UGC, portrait).

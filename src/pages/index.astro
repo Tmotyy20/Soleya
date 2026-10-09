@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import HomeHero from "@/components/home/HomeHero.astro";
+import HomeServices from "@/components/home/HomeServices.astro";
+import HomeAbout from "@/components/home/HomeAbout.astro";
+import HomeProjects from "@/components/home/HomeProjects.astro";
+import HomeValues from "@/components/home/HomeValues.astro";
+import HomeContact from "@/components/home/HomeContact.astro";
+import { getSections, getSiteSettings } from "@/lib/content";
+
+export const prerender = true;
+
+const [t, settings] = await Promise.all([
+  getSections("home"),
+  getSiteSettings(),
+]);
+const s = (key: string) => t[key] ?? "";
+---
+
+<BaseLayout>
+  <HomeHero
+    title={s("home.hero.title")}
+    ctaPrimary={s("home.hero.cta_primary")}
+    ctaSecondary={s("home.hero.cta_secondary")}
+  />
+  <HomeServices
+    title={s("home.services.title")}
+    subtitle={s("home.services.subtitle")}
+    items={[1, 2, 3, 4, 5, 6].map((n) => s(`home.services.${n}`))}
+    cta={s("home.services.cta")}
+  />
+  <HomeAbout
+    title={s("home.about.title")}
+    text={s("home.about.text")}
+    cta={s("home.about.cta")}
+  />
+  <HomeProjects
+    title={s("home.projects.title")}
+    items={[s("home.projects.1"), s("home.projects.2"), s("home.projects.3")]}
+  />
+  <HomeValues
+    title={s("home.values.title")}
+    items={[1, 2, 3, 4].map((n) => s(`home.values.${n}`))}
+  />
+  <HomeContact
+    title={s("home.contact.title")}
+    subtitle={s("home.contact.subtitle")}
+    settings={settings}
+  />
+</BaseLayout>

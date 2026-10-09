@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+import portrait from "@/assets/home/portrait-elsa.jpg";
+
+interface Props {
+  title: string;
+  text: string;
+  cta: string;
+}
+const { title, text, cta } = Astro.props;
+---
+
+<section id="a-propos" class="bg-cream" aria-labelledby="about-title">
+  <div class="mx-auto max-w-[85rem] px-5 md:px-[8.3%] py-12 md:py-10 grid gap-10 md:grid-cols-[minmax(0,27rem)_minmax(0,38rem)] md:justify-between items-center">
+    <Image
+      src={portrait}
+      alt="Portrait d'Elsa, fondatrice de Soleya"
+      widths={[400, 700, 900]}
+      sizes="(min-width: 768px) 432px, 100vw"
+      class="w-full aspect-[432/584] object-cover object-top"
+    />
+    <div>
+      <h2 id="about-title" class="title text-4xl md:text-5xl">
+        {title}
+      </h2>
+      <p
+        class="mt-5 whitespace-pre-line leading-[1.4] md:text-justify hyphens-auto"
+        lang="fr"
+      >
+        {text}
+      </p>
+      <a
+        href="/a-propos"
+        class="btn mt-10 bg-brown text-cream sm:min-w-[19.9rem] hover:bg-brown-light"
+      >
+        {cta}
+      </a>
+    </div>
+  </div>
+</section>

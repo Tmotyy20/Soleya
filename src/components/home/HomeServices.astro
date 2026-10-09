@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import textile from "@/assets/home/service-textile.jpg";
+import contenu from "@/assets/home/service-contenu.jpg";
+import strategie from "@/assets/home/service-strategie.jpg";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  items: string[]; // 6 libellés, dans l'ordre de la maquette
+  cta: string;
+}
+const { title, subtitle, items, cta } = Astro.props;
+
+// Habillage des 6 cartes, dans l'ordre de la maquette
+const looks = [
+  { bg: "bg-butter", text: "text-brown" },
+  { bg: "bg-seashell", text: "text-brown", image: textile },
+  { bg: "bg-brown-light", text: "text-butter" },
+  { bg: "bg-seashell", text: "text-brown", image: contenu },
+  { bg: "bg-brown", text: "text-butter" },
+  { bg: "bg-seashell", text: "text-brown", image: strategie },
+];
+---
+
+<section class="bg-nebula" aria-labelledby="services-title">
+  <div class="mx-auto max-w-[66rem] px-5 py-16 md:py-20 text-center">
+    <h2 id="services-title" class="title text-cream text-4xl md:text-5xl">
+      {title}
+    </h2>
+    <p class="mt-4 text-cream text-lg">{subtitle}</p>
+
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-14">
+      {items.map((label, i) => {
+        const look = looks[i]!;
+        return (
+          <li
+            class:list={[
+              "relative overflow-hidden rounded-[var(--radius-card)] aspect-[310/230] text-left",
+              look.bg,
+            ]}
+          >
+            {look.image && (
+              <Image
+                src={look.image}
+                alt=""
+                class="absolute inset-0 size-full object-cover"
+                widths={[320, 640]}
+                sizes="(min-width: 1024px) 310px, (min-width: 640px) 50vw, 100vw"
+              />
+            )}
+            <p
+              class:list={[
+                "absolute left-6 right-6 bottom-12 text-lg uppercase whitespace-pre-line leading-snug",
+                look.text,
+              ]}
+            >
+              {label}
+            </p>
+          </li>
+        );
+      })}
+    </ul>
+
+    <a
+      href="/#contact"
+      class="btn mt-14 bg-butter text-brown sm:min-w-[19.9rem] hover:bg-cream"
+    >
+      {cta}
+    </a>
+  </div>
+</section>

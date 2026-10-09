@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+import instagram from "@/assets/home/projet-instagram.png";
+import tshirt from "@/assets/home/tshirt-jaune.png";
+import logo from "@/assets/brand/logo-marron.png";
+import charte from "@/assets/home/charte-soleya.jpg";
+
+interface Props {
+  title: string;
+  items: [string, string, string];
+}
+const { title, items } = Astro.props;
+---
+
+<section id="projets" class="bg-cream" aria-labelledby="projects-title">
+  <div class="mx-auto max-w-[66rem] px-5 pt-16 md:pt-20 pb-20 md:pb-24">
+    <h2 id="projects-title" class="title text-4xl md:text-5xl text-center">
+      {title}
+    </h2>
+
+    <ul class="mt-16 grid gap-y-32 gap-x-14 sm:grid-cols-2 lg:grid-cols-3 lg:items-end [&>li]:w-full [&>li]:max-w-[19.4rem] [&>li]:mx-auto lg:[&>li]:max-w-none">
+      <!-- Community management : téléphone qui déborde de la carte -->
+      <li class="relative pl-8 lg:pl-0">
+        <div class="relative rounded-[var(--radius-card)] bg-butter aspect-[310/460] lg:ml-0">
+          <p class="pt-16 text-center text-lg uppercase">{items[0]}</p>
+        </div>
+        <Image
+          src={instagram}
+          alt="Aperçu d'un compte Instagram géré par Soleya"
+          width={202}
+          height={364}
+          class="absolute -left-0 lg:-left-[2.9rem] top-[31%] w-[65%] h-auto drop-shadow-xl"
+        />
+      </li>
+
+      <!-- Création textiles : t-shirt qui sort de la carte -->
+      <li class="relative">
+        <div class="relative rounded-[var(--radius-card)] bg-nebula aspect-[310/316] flex flex-col justify-end">
+          <p class="pb-10 text-center text-lg uppercase">{items[1]}</p>
+        </div>
+        <div class="absolute left-1/2 -translate-x-1/2 -top-[20%] w-[90%] aspect-[447/559]">
+          <Image
+            src={tshirt}
+            alt="T-shirt jaune floqué du logo Soleya"
+            class="size-full object-contain"
+          />
+          <Image
+            src={logo}
+            alt=""
+            width={120}
+            height={123}
+            class="absolute left-1/2 top-[25%] -translate-x-1/2 w-[32%] h-auto"
+          />
+        </div>
+      </li>
+
+      <!-- Logo / charte graphique -->
+      <li>
+        <div class="rounded-[var(--radius-card)] bg-brown-light aspect-[310/460] flex flex-col items-center px-[13%] pt-16 pb-[12%]">
+          <p class="-mx-[10%] text-center text-lg uppercase text-butter">
+            {items[2]}
+          </p>
+          <Image
+            src={charte}
+            alt="Charte graphique de Soleya : logo et palette de couleurs"
+            widths={[240, 480]}
+            sizes="226px"
+            class="mt-4 w-full flex-1 min-h-0 object-cover rounded-[1.9rem]"
+          />
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="stripes h-7" aria-hidden="true"></div>
+</section>

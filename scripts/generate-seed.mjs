@@ -29,5 +29,24 @@ update public.site_settings set
 where id = 1;
 `;
 
-await writeFile(new URL("../supabase/seed.sql", import.meta.url), sql);
-console.log(`supabase/seed.sql : ${rows.length} sections`);
+const arr = (xs) => `array[${xs.map(q).join(", ")}]::text[]`;
+const packs = (data.packs ?? []).map(
+  (p, i) =>
+    `  (${q(p.service)}, ${q(p.slug)}, ${q(p.name)}, ${p.price_eur ?? "null"}, ${q(p.price_note)}, ${arr(p.features)}, ${p.highlighted ? "true" : "false"}, ${q(p.theme)}, ${(i + 1) * 10})`,
+);
+const packsSql = packs.length
+  ? `
+-- Packs tarifaires
+insert into public.service_packs (service, slug, name, price_eur, price_note, features, highlighted, theme, position) values
+${packs.join(",\n")}
+on conflict (service, slug) do nothing;
+`
+  : "";
+
+await writeFile(
+  new URL("../supabase/seed.sql", import.meta.url),
+  sql + packsSql,
+);
+console.log(
+  `supabase/seed.sql : ${rows.length} sections, ${packs.length} packs`,
+);

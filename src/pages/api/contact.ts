@@ -3,11 +3,15 @@ import { createPublicClient } from "@/lib/supabase";
 
 export const prerender = false;
 
-const back = (status: string) => `/?contact=${status}#contact`;
-
 export const POST: APIRoute = async ({ request, redirect }) => {
   const form = await request.formData();
   const get = (k: string) => String(form.get(k) ?? "").trim();
+
+  // Retour sur la page d'origine : uniquement un chemin interne (pas de redirection ouverte).
+  const from = get("from");
+  const path =
+    /^\/[a-z0-9\-/]*$/.test(from) && !from.startsWith("//") ? from : "/";
+  const back = (status: string) => `${path}?contact=${status}#contact`;
 
   // Piège à robots rempli : on fait comme si tout allait bien.
   if (get("website")) return redirect(back("ok"), 303);

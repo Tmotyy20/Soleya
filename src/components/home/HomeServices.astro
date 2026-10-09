@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import textile from "@/assets/home/service-textile.jpg";
 import contenu from "@/assets/home/service-contenu.jpg";
 import strategie from "@/assets/home/service-strategie.jpg";
+import type { ImageMetadata } from "astro";
 
 interface Props {
   title: string;
@@ -13,8 +14,18 @@ interface Props {
 const { title, subtitle, items, cta } = Astro.props;
 
 // Habillage des 6 cartes, dans l'ordre de la maquette
-const looks = [
-  { bg: "bg-butter", text: "text-brown" },
+// href : page détaillée du service (les autres pages restent à créer)
+const looks: {
+  bg: string;
+  text: string;
+  image?: ImageMetadata;
+  href?: string;
+}[] = [
+  {
+    bg: "bg-butter",
+    text: "text-brown",
+    href: "/services/community-management",
+  },
   { bg: "bg-seashell", text: "text-brown", image: textile },
   { bg: "bg-brown-light", text: "text-butter" },
   { bg: "bg-seashell", text: "text-brown", image: contenu },
@@ -57,6 +68,14 @@ const looks = [
             >
               {label}
             </p>
+            {look.href && (
+              <a
+                href={look.href}
+                class="absolute inset-0 rounded-[var(--radius-card)] hover:ring-4 hover:ring-brown/30 transition-shadow"
+              >
+                <span class="sr-only">Découvrir : {label}</span>
+              </a>
+            )}
           </li>
         );
       })}

@@ -39,7 +39,22 @@ Alors, on fait rayonner votre projet ? ☀️', true, 140),
   ('home', 'home.values.4', 'Valeurs · 4', 'Passion', false, 240),
   ('home', 'home.contact.title', 'Contact · Titre', 'Un projet en tête ?
 Révélons ensemble votre potentiel', true, 250),
-  ('home', 'home.contact.subtitle', 'Contact · Sous-titre', 'Envoyez-moi un message et voyons ensemble comment je peux vous aider', false, 260)
+  ('home', 'home.contact.subtitle', 'Contact · Sous-titre', 'Envoyez-moi un message et voyons ensemble comment je peux vous aider', false, 260),
+  ('community-management', 'cm.hero.title', 'Community management · Titre', 'Community management', false, 270),
+  ('community-management', 'cm.intro.title', 'Community management · Titre « Qu''est-ce que c''est ? »', 'Qu’est-ce que c’est ?', false, 280),
+  ('community-management', 'cm.intro.lead', 'Community management · Accroche', 'Le Community Management : le moteur de votre croissance en ligne', false, 290),
+  ('community-management', 'cm.intro.text', 'Community management · Texte', 'Le community management ne se résume pas à publier des photos : c''est l''art de développer, d''animer et d''engager une communauté qualifiée autour de votre image de marque.
+
+Aujourd''hui, une présence passive ne suffit plus. Intégrer une véritable stratégie digitale sur les réseaux sociaux (Instagram, LinkedIn, Facebook, TikTok) est devenu indispensable pour votre entreprise afin de :', true, 300),
+  ('community-management', 'cm.intro.bullets', 'Community management · Liste (une ligne par point)', 'Booster votre visibilité en ligne : attirez l''attention de vos prospects là où ils passent le plus de temps.
+Stimuler l''engagement client : créez un lien de confiance, répondez aux besoins de votre audience et humanisez votre entreprise.
+Générer de la conversion et de la fidélisation : transformez vos simples abonnés en ambassadeurs et en clients fidèles.', true, 310),
+  ('community-management', 'cm.intro.cta', 'Community management · Bouton', 'Discutons de votre projet', false, 320),
+  ('community-management', 'cm.packs.title', 'Community management · Titre packs', 'Les différents packs', false, 330),
+  ('community-management', 'cm.packs.cta', 'Community management · Bouton des packs', 'En savoir plus', false, 340),
+  ('community-management', 'cm.clients.title', 'Community management · Titre clients', 'J’ai déjà géré les comptes de :', false, 350),
+  ('community-management', 'cm.clients.note', 'Community management · Note à côté des logos', 'Il me reste de la
+place pour vous', true, 360)
 on conflict (key) do nothing;
 
 update public.site_settings set
@@ -47,3 +62,10 @@ update public.site_settings set
   instagram_handle = coalesce(instagram_handle, 'soleya'),
   instagram_url = coalesce(instagram_url, 'https://www.instagram.com/soleya/')
 where id = 1;
+
+-- Packs tarifaires
+insert into public.service_packs (service, slug, name, price_eur, price_note, features, highlighted, theme, position) values
+  ('community-management', 'rayon-de-soleil', 'Pack Rayon de soleil', 450, 'par mois*', array['Création & publication de 1 post/semaine', 'Gestion de 1 réseau social (IG)', 'Reporting trimestriel simplifié', 'Audit initial unique', 'Conseil stratégique de base']::text[], false, 'butter', 10),
+  ('community-management', 'plein-soleil', 'Pack Plein soleil', 700, 'par mois*', array['Création & publication de 3 posts/semaine', 'Gestion de 2 réseaux sociaux (FB, IG)', 'Reporting mensuel détaillé', 'Réponse aux commentaires', 'Audit initial mensuel', 'Stratégie de contenu personnalisée']::text[], true, 'brown', 20),
+  ('community-management', 'eclipse', 'Pack Éclipse', 850, 'par mois*', array['Création & publication de 5 posts/semaine', 'Gestion de 3 réseaux sociaux (FB, IG, LinkedIn)', 'Reporting mensuel détaillé', 'Community management 7j/7', 'Stratégie multi-canaux']::text[], false, 'nebula', 30)
+on conflict (service, slug) do nothing;

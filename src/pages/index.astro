@@ -4,8 +4,8 @@ import HomeHero from "@/components/home/HomeHero.astro";
 import HomeServices from "@/components/home/HomeServices.astro";
 import HomeAbout from "@/components/home/HomeAbout.astro";
 import HomeProjects from "@/components/home/HomeProjects.astro";
-import HomeValues from "@/components/home/HomeValues.astro";
-import HomeContact from "@/components/home/HomeContact.astro";
+import ValuesSection from "@/components/ValuesSection.astro";
+import ContactSection from "@/components/ContactSection.astro";
 import { getSections, getSiteSettings } from "@/lib/content";
 
 export const prerender = true;
@@ -38,11 +38,11 @@ const s = (key: string) => t[key] ?? "";
     title={s("home.projects.title")}
     items={[s("home.projects.1"), s("home.projects.2"), s("home.projects.3")]}
   />
-  <HomeValues
+  <ValuesSection
     title={s("home.values.title")}
     items={[1, 2, 3, 4].map((n) => s(`home.values.${n}`))}
   />
-  <HomeContact
+  <ContactSection
     title={s("home.contact.title")}
     subtitle={s("home.contact.subtitle")}
     settings={settings}

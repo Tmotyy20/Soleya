@@ -1,0 +1,124 @@
+---
+import type { ServicePack } from "@/lib/database.types";
+
+interface Props {
+  title: string;
+  cta: string;
+  packs: ServicePack[];
+}
+const { title, cta, packs } = Astro.props;
+
+// Habillage par thème (classes complètes pour que Tailwind les détecte)
+const themes = {
+  butter: {
+    header: "bg-butter text-brown",
+    border: "border-butter",
+    circle: "bg-cream",
+    button: "bg-butter text-brown hover:bg-brown hover:text-cream",
+  },
+  nebula: {
+    header: "bg-nebula text-brown",
+    border: "border-nebula",
+    circle: "bg-cream",
+    button: "bg-nebula text-brown hover:bg-brown hover:text-cream",
+  },
+  brown: {
+    header: "bg-brown text-cream",
+    border: "border-brown",
+    circle: "bg-butter",
+    button: "bg-brown text-cream hover:bg-brown-light",
+  },
+} as const;
+
+const euro = new Intl.NumberFormat("fr-FR", {
+  style: "currency",
+  currency: "EUR",
+  maximumFractionDigits: 0,
+});
+---
+
+<section class="bg-cream" aria-labelledby="packs-title">
+  <div class="mx-auto max-w-[71rem] px-5 pt-12 md:pt-14 pb-16">
+    <h2 id="packs-title" class="title text-4xl md:text-5xl text-center">
+      {title}
+    </h2>
+
+    <ul class="mt-10 md:mt-6 grid gap-6 lg:gap-[0.7rem] lg:grid-cols-3 lg:py-10 max-w-md lg:max-w-none mx-auto">
+      {packs.map((p) => {
+        const t = themes[p.theme];
+        return (
+          <li
+            class:list={[
+              "relative flex flex-col rounded-[0.9rem] border-[3px] bg-cream overflow-hidden",
+              t.border,
+              p.highlighted && "lg:-my-10 lg:shadow-lg z-10",
+            ]}
+          >
+            <div
+              class:list={[
+                "px-6 text-center flex items-start justify-center",
+                p.highlighted ? "pt-8 h-[7rem]" : "pt-8 h-[7.4rem]",
+                t.header,
+              ]}
+            >
+              <h3 class="title text-xl xl:text-[1.45rem] whitespace-nowrap">
+                {p.name}
+              </h3>
+            </div>
+
+            <div
+              class:list={[
+                "relative mx-auto -mt-[2.6rem] size-[7.25rem] rounded-full grid place-content-center text-center",
+                t.circle,
+              ]}
+            >
+              {p.price_eur != null ? (
+                <p class="title text-[1.75rem] leading-none">
+                  {euro.format(p.price_eur).replace(/\s/g, "")}
+                </p>
+              ) : (
+                <p class="title text-lg">Sur devis</p>
+              )}
+              <p class="text-[0.6rem] text-right mt-1 mr-1">{p.price_note}</p>
+            </div>
+
+            <ul class="mt-4 px-4 sm:px-[2.1rem] lg:px-3 xl:px-[0.9rem] space-y-0 leading-[2.06rem] flex-1">
+              {p.features.map((f) => (
+                <li class="flex gap-3">
+                  <svg
+                    viewBox="0 0 20 20"
+                    class="mt-2 size-[1.15rem] shrink-0"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2 11l5 6L18 2"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="px-6 pt-8 pb-6 flex justify-center">
+              <a
+                href={`?pack=${encodeURIComponent(p.name)}#contact`}
+                class:list={[
+                  "title text-xl md:text-2xl w-full max-w-[17.5rem] min-h-[3.9rem] grid place-items-center rounded-xl transition-colors",
+                  t.button,
+                ]}
+                aria-label={`${cta} sur le ${p.name}`}
+              >
+                {cta}
+              </a>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>

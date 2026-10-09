@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title: string;
+  lead: string;
+  text: string;
+  bullets: string; // une ligne par point
+  cta: string;
+  image: ImageMetadata;
+  imageAlt: string;
+}
+const { title, lead, text, bullets, cta, image, imageAlt } = Astro.props;
+const items = bullets
+  .split("\n")
+  .map((b) => b.trim())
+  .filter(Boolean);
+---
+
+<section class="bg-brown-light text-cream" aria-labelledby="intro-title">
+  <div class="mx-auto max-w-[85rem] px-5 md:px-[7.8%] py-16 md:py-[4.9rem] grid gap-12 md:grid-cols-[minmax(0,21.75rem)_minmax(0,37.9rem)] md:justify-between items-center">
+    <Image
+      src={image}
+      alt={imageAlt}
+      widths={[350, 700]}
+      sizes="(min-width: 768px) 348px, 80vw"
+      class="w-[75%] max-w-[21.75rem] md:w-full mx-auto h-auto drop-shadow-2xl"
+    />
+    <div>
+      <h2 id="intro-title" class="title text-butter text-4xl md:text-5xl">
+        {title}
+      </h2>
+      <p class="mt-4">{lead}</p>
+      <p
+        class="mt-5 whitespace-pre-line md:text-justify hyphens-auto"
+        lang="fr"
+      >
+        {text}
+      </p>
+      <ul class="mt-5 space-y-5 list-disc pl-7 md:text-justify" lang="fr">
+        {items.map((b) => (
+          <li>{b}</li>
+        ))}
+      </ul>
+      <a
+        href="#contact"
+        class="btn mt-8 bg-brown text-cream sm:min-w-[19.9rem] hover:bg-brown/80"
+      >
+        {cta}
+      </a>
+    </div>
+  </div>
+</section>

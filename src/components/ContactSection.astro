@@ -33,6 +33,7 @@ const label = "block uppercase mb-3";
         action="/api/contact"
         class="rounded-[var(--radius-card)] bg-cream p-6 sm:px-[3.3rem] sm:py-10"
       >
+        <input type="hidden" name="from" value={Astro.url.pathname} />
         <div
           id="contact-status"
           role="status"
@@ -220,6 +221,15 @@ const label = "block uppercase mb-3";
       "bg-seashell",
     ],
   };
+  // Pré-remplit le message quand on arrive depuis un pack (?pack=Nom du pack#contact)
+  const pack = new URLSearchParams(location.search).get("pack");
+  const message = document.getElementById(
+    "message",
+  ) as HTMLTextAreaElement | null;
+  if (pack && message && !message.value) {
+    message.value = `Bonjour, je suis intéressé(e) par le ${pack.slice(0, 80)}.`;
+  }
+
   if (box && status && messages[status]) {
     const [text, bg] = messages[status];
     box.textContent = text;

@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ServiceHero from "@/components/services/ServiceHero.astro";
+import ServiceIntro from "@/components/services/ServiceIntro.astro";
+import ClientLogosSection from "@/components/services/ClientLogosSection.astro";
+import ValuesSection from "@/components/ValuesSection.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import hero from "@/assets/services/cm-hero.jpg";
+import phone from "@/assets/home/projet-instagram.png";
+import { getClientLogos, getSections, getSiteSettings } from "@/lib/content";
+
+export const prerender = true;
+
+const [t, settings, logos] = await Promise.all([
+  getSections(),
+  getSiteSettings(),
+  getClientLogos("ugc"),
+]);
+const s = (key: string) => t[key] ?? "";
+---
+
+<BaseLayout
+  title="Création de contenu UGC · Soleya"
+  description="Création de contenu UGC : vidéos et visuels authentiques pour Instagram Reels, TikTok et vos publicités, pour inspirer confiance et booster vos conversions."
+>
+  <ServiceHero
+    title={s("ugc.hero.title")}
+    image={hero}
+    imageAlt="Créatrice de contenu souriante devant son écran"
+  />
+  <ServiceIntro
+    title={s("ugc.intro.title")}
+    text={s("ugc.intro.text")}
+    bullets={s("ugc.intro.bullets")}
+    cta={s("ugc.intro.cta")}
+    image={phone}
+    imageAlt="Aperçu d'un compte Instagram géré par Soleya"
+  />
+  <ClientLogosSection
+    title={s("ugc.clients.title")}
+    note={s("ugc.clients.note")}
+    type="ugc"
+    logos={logos}
+  />
+  <ValuesSection
+    title={s("home.values.title")}
+    items={[1, 2, 3, 4].map((n) => s(`home.values.${n}`))}
+  />
+  <ContactSection
+    title={s("home.contact.title")}
+    subtitle={s("home.contact.subtitle")}
+    settings={settings}
+  />
+</BaseLayout>

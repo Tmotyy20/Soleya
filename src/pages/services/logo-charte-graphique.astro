@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ServiceHero from "@/components/services/ServiceHero.astro";
+import ServiceIntro from "@/components/services/ServiceIntro.astro";
+import GallerySection from "@/components/services/GallerySection.astro";
+import ValuesSection from "@/components/ValuesSection.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import hero from "@/assets/services/textile-hero.jpg";
+import logo from "@/assets/brand/logo-marron.png";
+import {
+  getProjectsByCategory,
+  getSections,
+  getSiteSettings,
+} from "@/lib/content";
+
+export const prerender = true;
+
+const [t, settings, projects] = await Promise.all([
+  getSections(),
+  getSiteSettings(),
+  getProjectsByCategory("identite_visuelle"),
+]);
+const s = (key: string) => t[key] ?? "";
+---
+
+<BaseLayout
+  title="Logo & charte graphique · Soleya"
+  description="Création de logo et de charte graphique sur-mesure : une identité visuelle cohérente pour inspirer confiance et vous démarquer, sur le web, le print et les réseaux."
+>
+  <ServiceHero
+    title={s("lg.hero.title")}
+    image={hero}
+    imageAlt="T-shirts imprimés aux couleurs d'une marque"
+    tone="brown"
+  />
+  <ServiceIntro
+    title={s("lg.intro.title")}
+    text={s("lg.intro.text")}
+    bullets={s("lg.intro.bullets")}
+    outro={s("lg.intro.outro")}
+    cta={s("lg.intro.cta")}
+    theme="nebula"
+    visualWidth="25rem"
+    spacious="12.5rem"
+    compactList
+  >
+    <div slot="visual" class="flex justify-center md:justify-start md:pl-[17%]">
+      <Image
+        src={logo}
+        alt="Logo Soleya"
+        width={302}
+        height={309}
+        class="w-[55%] max-w-[18.9rem] md:w-[18.9rem] h-auto"
+      />
+    </div>
+  </ServiceIntro>
+  <GallerySection
+    title={s("lg.gallery.title")}
+    subtitle={s("lg.gallery.subtitle")}
+    category="identite_visuelle"
+    projects={projects}
+    layout="collage"
+  />
+  <ValuesSection
+    title={s("home.values.title")}
+    items={[1, 2, 3, 4].map((n) => s(`home.values.${n}`))}
+  />
+  <ContactSection
+    title={s("home.contact.title")}
+    subtitle={s("home.contact.subtitle")}
+    settings={settings}
+    band
+  />
+</BaseLayout>

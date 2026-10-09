@@ -1,8 +1,14 @@
 // Lecture des contenus au moment du build (pages publiques statiques).
 // Sans Supabase configuré (ex. premier `npm run dev`), on retombe sur les textes par défaut.
 import { createPublicClient } from "./supabase";
-import { defaultSections, defaultSettings } from "./defaults";
-import type { ClientLogo, Project, SiteSettings } from "./database.types";
+import { defaultPacks, defaultSections, defaultSettings } from "./defaults";
+import type {
+  ClientLogo,
+  LogoType,
+  Project,
+  ServicePack,
+  SiteSettings,
+} from "./database.types";
 
 export async function getSections(page?: string) {
   const sections: Record<string, string> = { ...defaultSections };
@@ -31,14 +37,12 @@ export async function getFeaturedProjects(limit = 6): Promise<Project[]> {
   return data;
 }
 
-export async function getClientLogos(): Promise<ClientLogo[]> {
+export async function getClientLogos(type?: LogoType): Promise<ClientLogo[]> {
   const supabase = createPublicClient();
   if (!supabase) return [];
-  const { data, error } = await supabase
-    .from("client_logos")
-    .select("*")
-    .eq("published", true)
-    .order("position");
+  let query = supabase.from("client_logos").select("*").eq("published", true);
+  if (type) query = query.eq("type", type);
+  const { data, error } = await query.order("position");
   if (error) throw new Error(`Supabase client_logos : ${error.message}`);
   return data;
 }
@@ -62,3 +66,16 @@ export const categoryLabels: Record<Project["category"], string> = {
   ugc: "Création de contenu (UGC)",
   textile: "Création textiles",
 };
+
+export async function getPacks(service: string): Promise<ServicePack[]> {
+  const supabase = createPublicClient();
+  if (!supabase) return defaultPacks.filter((p) => p.service === service);
+  const { data, error } = await supabase
+    .from("service_packs")
+    .select("*")
+    .eq("service", service)
+    .eq("published", true)
+    .order("position");
+  if (error) throw new Error(`Supabase service_packs : ${error.message}`);
+  return data;
+}

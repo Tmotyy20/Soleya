@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { ClientLogo } from "@/lib/database.types";
+import { mediaUrl } from "@/lib/supabase";
+import { defaultCmLogos } from "@/lib/defaults";
+
+interface Props {
+  title: string;
+  note: string;
+  logos: ClientLogo[]; // depuis Supabase ; vide = repli sur les logos du repo
+}
+const { title, note, logos } = Astro.props;
+
+// Repli sans Supabase : logos CM embarqués dans src/assets/clients/cm
+const local = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/clients/cm/*.png",
+  { eager: true },
+);
+type Item = { name: string; remote?: string; local?: ImageMetadata };
+const items: Item[] =
+  logos.length > 0
+    ? logos.map((l) => ({ name: l.name, remote: mediaUrl(l.image_path) ?? "" }))
+    : defaultCmLogos.flatMap((l) => {
+        const img = local[`/src/assets/clients/cm/${l.file}`]?.default;
+        return img ? [{ name: l.name, local: img }] : [];
+      });
+
+const logoClass =
+  "max-h-[7.25rem] max-w-[10.5rem] w-auto h-auto object-contain";
+---
+
+<section class="bg-cream" aria-labelledby="clients-title">
+  <div class="mx-auto max-w-[85rem] px-5 md:px-[5.1%] pt-14 md:pt-24 pb-20 md:pb-28">
+    <h2 id="clients-title" class="title text-3xl md:text-5xl text-center">
+      {title}
+    </h2>
+
+    <ul class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12 lg:gap-y-[3.2rem] items-center lg:max-w-[59rem]">
+      {items.map((l) => (
+        <li class="flex justify-center items-center h-[7.25rem]">
+          {l.local ? (
+            <Image src={l.local} alt={l.name} width={240} class={logoClass} />
+          ) : (
+            <img
+              src={l.remote}
+              alt={l.name}
+              loading="lazy"
+              decoding="async"
+              class={logoClass}
+            />
+          )}
+        </li>
+      ))}
+      <li
+        class="col-span-2 sm:col-span-1 lg:col-start-4 flex justify-center lg:justify-end"
+        aria-hidden="true"
+      >
+        <div class="relative pt-14 -rotate-[9deg]">
+          <svg
+            viewBox="0 0 110 60"
+            class="absolute -left-4 top-0 w-24 text-brown"
+            fill="none"
+          >
+            <path
+              d="M100 56C88 30 62 14 12 18"
+              stroke="currentColor"
+              stroke-width="5"
+              stroke-linecap="round"
+            ></path>
+            <path
+              d="M24 6L10 18l15 10"
+              stroke="currentColor"
+              stroke-width="5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+          <p class="title text-lg leading-tight whitespace-pre-line">{note}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

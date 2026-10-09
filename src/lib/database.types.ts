@@ -95,6 +95,23 @@ export type ContactMessage = {
   created_at: string;
 };
 
+export type PackTheme = "butter" | "brown" | "nebula";
+
+export type ServicePack = {
+  id: number;
+  service: string;
+  slug: string;
+  name: string;
+  price_eur: number | null;
+  price_note: string;
+  features: string[];
+  highlighted: boolean;
+  theme: PackTheme;
+  position: number;
+  published: boolean;
+  updated_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -106,6 +123,7 @@ export type Database = {
       posts: Table<Post>;
       site_settings: Table<SiteSettings>;
       contact_messages: Table<ContactMessage>;
+      service_packs: Table<ServicePack>;
     };
     Views: Record<string, never>;
     Functions: { is_admin: { Args: Record<string, never>; Returns: boolean } };

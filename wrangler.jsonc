@@ -1,6 +1,7 @@
 {
+  // Déploiement sur Cloudflare Workers (adaptateur @astrojs/cloudflare v14).
+  // Le point d'entrée et le binding des assets sont ajoutés automatiquement par l'adaptateur.
   "name": "soleya",
   "compatibility_date": "2026-09-01",
-  "compatibility_flags": ["nodejs_compat"],
-  "pages_build_output_dir": "./dist"
+  "compatibility_flags": ["nodejs_compat"]
 }

@@ -30,12 +30,18 @@ Sans `.env`, le site démarre avec les textes par défaut (`src/lib/defaults.ts`
    node --env-file=.env scripts/seed-media.mjs "/chemin/vers/Soleya/Dossier"
    ```
 
-## Déployer sur Cloudflare Pages
+## Déployer sur Cloudflare Workers
 
-1. Pages → Create → connecter le repo GitHub, preset **Astro**, build `npm run build`, output `dist`.
-2. Variables : `PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_ANON_KEY`, `CLOUDFLARE_DEPLOY_HOOK_URL`.
-3. Settings → Builds → **Deploy hooks** : créer un hook, coller son URL dans `CLOUDFLARE_DEPLOY_HOOK_URL`.
-   Chaque modification dans `/admin` déclenche ce hook et le site est reconstruit (environ 1 min).
+Depuis Astro 7 / `@astrojs/cloudflare` v14, le site se déploie comme un **Worker avec assets statiques**
+(et non plus comme un projet Cloudflare Pages). L'adaptateur génère lui-même le point d'entrée et le binding `ASSETS`.
+
+1. Workers & Pages → Create → **Import a repository** → ce repo. Build : `npm run build`, déploiement : `npx wrangler deploy`.
+2. Variables : `PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_ANON_KEY` (au build), `CLOUDFLARE_DEPLOY_HOOK_URL` (secret du Worker).
+3. `CLOUDFLARE_DEPLOY_HOOK_URL` : une URL qui relance un build quand la cliente modifie un contenu dans `/admin`.
+   TODO : vérifier dans le tableau de bord si les deploy hooks sont disponibles pour Workers Builds ;
+   sinon, utiliser un workflow GitHub Actions déclenché par `repository_dispatch`.
+
+Test local du runtime Cloudflare : `npm run build && npm run preview`.
 
 ## Structure
 

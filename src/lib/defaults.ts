@@ -18,5 +18,14 @@ export const defaultPacks: ServicePack[] = content.packs.map((p, i) => ({
   updated_at: "",
 }));
 
-/** Logos CM embarqués dans le repo, utilisés seulement sans Supabase. */
-export const defaultCmLogos = content.cm_logos;
+/** Logos clients embarqués dans le repo (src/assets/clients/<type>), utilisés sans Supabase. */
+export const defaultLogos: Record<
+  "cm" | "ugc",
+  { file: string; name: string }[]
+> = content.logos;
+
+/** Visuels de projets embarqués (src/assets/gallery/), utilisés sans projets publiés. */
+export const defaultGalleries: Record<
+  "identite_visuelle" | "print",
+  { file: string; title: string }[]
+> = content.galleries;

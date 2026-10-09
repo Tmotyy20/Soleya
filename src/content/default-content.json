@@ -263,6 +263,148 @@
       "label": "Création textile · Texte sur le t-shirt",
       "multiline": true,
       "content": "Votre\nlogo"
+    },
+    {
+      "page": "logo-charte-graphique",
+      "key": "lg.hero.title",
+      "label": "Logo & charte · Titre",
+      "content": "Logo & charte graphique"
+    },
+    {
+      "page": "logo-charte-graphique",
+      "key": "lg.intro.title",
+      "label": "Logo & charte · Titre « À quoi ça sert ? »",
+      "content": "À quoi ça sert ?"
+    },
+    {
+      "page": "logo-charte-graphique",
+      "key": "lg.intro.text",
+      "label": "Logo & charte · Texte",
+      "multiline": true,
+      "content": "Logo & charte graphique : marquer les esprits et inspirer confiance\nTon identité visuelle est le premier levier de crédibilité de ton projet. Une charte graphique bien pensée pose des fondations solides :"
+    },
+    {
+      "page": "logo-charte-graphique",
+      "key": "lg.intro.bullets",
+      "label": "Logo & charte · Liste (une ligne par point)",
+      "multiline": true,
+      "content": "Image pro : tu inspires immédiatement confiance à tes prospects.\nImpact visuel : tu te démarques nettement de tes concurrents.\nCohérence : un univers harmonieux sur tous tes supports (web, print, réseaux)."
+    },
+    {
+      "page": "logo-charte-graphique",
+      "key": "lg.intro.outro",
+      "label": "Logo & charte · Conclusion",
+      "multiline": true,
+      "content": "Je conçois pour vous un univers sur-mesure et stratégique, pensé pour captiver vos clients et valoriser votre offre."
+    },
+    {
+      "page": "logo-charte-graphique",
+      "key": "lg.intro.cta",
+      "label": "Logo & charte · Bouton",
+      "content": "Discutons de votre projet"
+    },
+    {
+      "page": "logo-charte-graphique",
+      "key": "lg.gallery.title",
+      "label": "Logo & charte · Titre galerie",
+      "content": "Quelques projets"
+    },
+    {
+      "page": "logo-charte-graphique",
+      "key": "lg.gallery.subtitle",
+      "label": "Logo & charte · Sous-titre galerie",
+      "content": "Certains sont fictifs et viennent de projets d'école*"
+    },
+    {
+      "page": "creation-contenu-ugc",
+      "key": "ugc.hero.title",
+      "label": "UGC · Titre",
+      "multiline": true,
+      "content": "Création de contenu\nUGC"
+    },
+    {
+      "page": "creation-contenu-ugc",
+      "key": "ugc.intro.title",
+      "label": "UGC · Titre « Qu'est-ce que c'est ? »",
+      "content": "Qu’est-ce que c’est ?"
+    },
+    {
+      "page": "creation-contenu-ugc",
+      "key": "ugc.intro.text",
+      "label": "UGC · Texte",
+      "multiline": true,
+      "content": "Le contenu UGC (User-Generated Content) désigne des visuels et vidéos créés dans un style spontané, naturel et immersif, à l'image des publications de vrais utilisateurs. Loin des publicités traditionnelles très léchées et parfois perçues comme impersonnelles, l'UGC mise sur la preuve sociale et la sincérité.\n\nVoici pourquoi ce format est devenu un levier majeur dans une stratégie digitale :"
+    },
+    {
+      "page": "creation-contenu-ugc",
+      "key": "ugc.intro.bullets",
+      "label": "UGC · Liste (une ligne par point)",
+      "multiline": true,
+      "content": "Inspirer une confiance immédiate : vos prospects s'identifient bien plus facilement à une démonstration concrète et humaine qu'à un discours commercial classique.\nCapter l'attention sur les réseaux : taillés pour les formats verticaux (Instagram Reels, TikTok, Shorts), ces contenus courts et dynamiques stoppent le scroll dès les premières secondes.\nBooster les conversions : intégré dans vos campagnes publicitaires (Meta Ads, TikTok Ads) ou sur vos fiches produits, l'UGC lève les freins à l'achat et améliore nettement votre rendement."
+    },
+    {
+      "page": "creation-contenu-ugc",
+      "key": "ugc.intro.cta",
+      "label": "UGC · Bouton",
+      "content": "Discutons de votre projet"
+    },
+    {
+      "page": "creation-contenu-ugc",
+      "key": "ugc.clients.title",
+      "label": "UGC · Titre marques",
+      "content": "J’ai déjà créé du contenu pour :"
+    },
+    {
+      "page": "creation-contenu-ugc",
+      "key": "ugc.clients.note",
+      "label": "UGC · Note à côté des logos",
+      "multiline": true,
+      "content": "Il me reste de la\nplace pour vous"
+    },
+    {
+      "page": "flyers-affiches",
+      "key": "fl.hero.title",
+      "label": "Flyers · Titre",
+      "content": "Flyers & affiches"
+    },
+    {
+      "page": "flyers-affiches",
+      "key": "fl.intro.title",
+      "label": "Flyers · Titre « Quel est l'intérêt ? »",
+      "content": "Quel est l’intérêt ?"
+    },
+    {
+      "page": "flyers-affiches",
+      "key": "fl.intro.text",
+      "label": "Flyers · Texte",
+      "multiline": true,
+      "content": "À l'ère du tout-numérique, on sous-estime souvent la puissance d'un flyer bien pensé ou d'une affiche percutante. Pourtant, pour promouvoir un événement, le support physique offre une présence concrète que le web ne peut pas remplacer à lui seul.\n\nVoici ce qu'une création print apporte à votre stratégie :"
+    },
+    {
+      "page": "flyers-affiches",
+      "key": "fl.intro.bullets",
+      "label": "Flyers · Liste (une ligne par point)",
+      "multiline": true,
+      "content": "Ancrage local et visibilité directe : vous touchez votre cible là où elle vit et se déplace. Une affiche bien conçue attire l'œil instantanément dans l'espace public ou chez les commerçants partenaires.\nImpact mémoriel et toucher : un support physique crée un lien émotionnel plus fort qu'une simple publication éphémère. Un bel imprimé ne se scrolle pas : il se garde, se transmet et reste sous les yeux.\nPasserelle vers le digital : en y intégrant un QR code ou un lien court, votre flyer devient le pont parfait entre le monde réel et vos réseaux sociaux, votre billetterie ou votre site web."
+    },
+    {
+      "page": "flyers-affiches",
+      "key": "fl.intro.outro",
+      "label": "Flyers · Conclusion",
+      "multiline": true,
+      "content": "Associer le print au digital, c'est doubler vos chances de capter l'attention et de marquer durablement les esprits."
+    },
+    {
+      "page": "flyers-affiches",
+      "key": "fl.intro.cta",
+      "label": "Flyers · Bouton",
+      "content": "Discutons de votre projet"
+    },
+    {
+      "page": "flyers-affiches",
+      "key": "fl.gallery.title",
+      "label": "Flyers · Titre galerie",
+      "content": "Quelques réalisations"
     }
   ],
   "settings": {
@@ -321,46 +463,208 @@
       ]
     }
   ],
-  "cm_logos": [
-    {
-      "file": "gruissan-tourisme.png",
-      "name": "Gruissan Tourisme"
-    },
-    {
-      "file": "le-versant.png",
-      "name": "Le Versant"
-    },
-    {
-      "file": "maison-sampietro.png",
-      "name": "Maison Sampietro"
-    },
-    {
-      "file": "bistro-serano.png",
-      "name": "Bistro Serano"
-    },
-    {
-      "file": "gruissan-beach-rugby.png",
-      "name": "Gruissan Beach Rugby"
-    },
-    {
-      "file": "the-beauty.png",
-      "name": "The Beauty"
-    },
-    {
-      "file": "tipolino.png",
-      "name": "Tipolino"
-    },
-    {
-      "file": "under-the-wave.png",
-      "name": "Under The Wave"
-    },
-    {
-      "file": "l-houstalet.png",
-      "name": "L'Houstalet"
-    },
-    {
-      "file": "o-paisible.png",
-      "name": "Ô Paisible"
-    }
-  ]
+  "logos": {
+    "cm": [
+      {
+        "file": "gruissan-tourisme.png",
+        "name": "Gruissan Tourisme"
+      },
+      {
+        "file": "le-versant.png",
+        "name": "Le Versant"
+      },
+      {
+        "file": "maison-sampietro.png",
+        "name": "Maison Sampietro"
+      },
+      {
+        "file": "bistro-serano.png",
+        "name": "Bistro Serano"
+      },
+      {
+        "file": "gruissan-beach-rugby.png",
+        "name": "Gruissan Beach Rugby"
+      },
+      {
+        "file": "the-beauty.png",
+        "name": "The Beauty"
+      },
+      {
+        "file": "tipolino.png",
+        "name": "Tipolino"
+      },
+      {
+        "file": "under-the-wave.png",
+        "name": "Under The Wave"
+      },
+      {
+        "file": "l-houstalet.png",
+        "name": "L'Houstalet"
+      },
+      {
+        "file": "o-paisible.png",
+        "name": "Ô Paisible"
+      }
+    ],
+    "ugc": [
+      {
+        "file": "mugler.png",
+        "name": "Mugler"
+      },
+      {
+        "file": "nyx.png",
+        "name": "NYX Professional Makeup"
+      },
+      {
+        "file": "loreal-paris.png",
+        "name": "L'Oréal Paris"
+      },
+      {
+        "file": "cacharel.png",
+        "name": "Cacharel"
+      },
+      {
+        "file": "armani-beauty.png",
+        "name": "Armani beauty"
+      },
+      {
+        "file": "maybelline.png",
+        "name": "Maybelline New York"
+      },
+      {
+        "file": "respire.png",
+        "name": "Respire"
+      },
+      {
+        "file": "mixa.png",
+        "name": "Mixa"
+      },
+      {
+        "file": "kerastase.png",
+        "name": "Kérastase"
+      },
+      {
+        "file": "benefit.png",
+        "name": "Benefit"
+      },
+      {
+        "file": "luxeol.png",
+        "name": "Luxéol"
+      },
+      {
+        "file": "vichy.png",
+        "name": "Vichy"
+      },
+      {
+        "file": "redken.png",
+        "name": "Redken"
+      },
+      {
+        "file": "lancome.png",
+        "name": "Lancôme"
+      },
+      {
+        "file": "it-cosmetics.png",
+        "name": "IT Cosmetics"
+      },
+      {
+        "file": "biotherm.png",
+        "name": "Biotherm"
+      },
+      {
+        "file": "prada.png",
+        "name": "Prada"
+      },
+      {
+        "file": "azzaro.png",
+        "name": "Azzaro"
+      },
+      {
+        "file": "emma.png",
+        "name": "Emma"
+      },
+      {
+        "file": "la-roche-posay.png",
+        "name": "La Roche-Posay"
+      }
+    ]
+  },
+  "galleries": {
+    "identite_visuelle": [
+      {
+        "file": "soleya-logo.png",
+        "title": "Logo Soleya"
+      },
+      {
+        "file": "under-the-wave.png",
+        "title": "Logo Under The Wave"
+      },
+      {
+        "file": "horizon-visuel.png",
+        "title": "Logo Horizon Visuel"
+      },
+      {
+        "file": "adhauc.png",
+        "title": "Logo Adhauc Expert"
+      },
+      {
+        "file": "moveen-logo.png",
+        "title": "Logo Moveen"
+      },
+      {
+        "file": "soleya-charte.jpg",
+        "title": "Charte graphique Soleya"
+      },
+      {
+        "file": "moveen-charte.jpg",
+        "title": "Charte graphique Moveen"
+      },
+      {
+        "file": "don-du-sang-charte.jpg",
+        "title": "Charte graphique Don du sang"
+      }
+    ],
+    "print": [
+      {
+        "file": "moveen.jpg",
+        "title": "Affiche Moveen"
+      },
+      {
+        "file": "under-the-wave-flyer.jpg",
+        "title": "Flyer Under The Wave"
+      },
+      {
+        "file": "laetitia-darnis.jpg",
+        "title": "Affiche Laetitia Darnis"
+      },
+      {
+        "file": "armissan.jpg",
+        "title": "Affiche fête locale d'Armissan"
+      },
+      {
+        "file": "en-famille.jpg",
+        "title": "Affiche « En famille avec nos coachs »"
+      },
+      {
+        "file": "origin-creative-agency.jpg",
+        "title": "Affiche Origin Creative Agency"
+      },
+      {
+        "file": "under-the-wave-tropicale.jpg",
+        "title": "Flyer Under The Wave · Tropicale collection"
+      },
+      {
+        "file": "maison-sampietro.jpg",
+        "title": "Affiche Maison Sampietro"
+      },
+      {
+        "file": "tcrigraphie.jpg",
+        "title": "Affiche Tcrigraphie"
+      },
+      {
+        "file": "cours-gratuit.jpg",
+        "title": "Affiche cours gratuit"
+      }
+    ]
+  }
 }

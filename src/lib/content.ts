@@ -79,3 +79,19 @@ export async function getPacks(service: string): Promise<ServicePack[]> {
   if (error) throw new Error(`Supabase service_packs : ${error.message}`);
   return data;
 }
+
+/** Projets publiés d'une catégorie (galeries des pages services). */
+export async function getProjectsByCategory(
+  category: Project["category"],
+): Promise<Project[]> {
+  const supabase = createPublicClient();
+  if (!supabase) return [];
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("published", true)
+    .eq("category", category)
+    .order("position");
+  if (error) throw new Error(`Supabase projects : ${error.message}`);
+  return data;
+}

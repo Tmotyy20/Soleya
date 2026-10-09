@@ -1,46 +1,78 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
-import type { ClientLogo } from "@/lib/database.types";
+import type { ClientLogo, LogoType } from "@/lib/database.types";
 import { mediaUrl } from "@/lib/supabase";
-import { defaultCmLogos } from "@/lib/defaults";
+import { defaultLogos } from "@/lib/defaults";
 
 interface Props {
   title: string;
   note: string;
+  type: LogoType;
   logos: ClientLogo[]; // depuis Supabase ; vide = repli sur les logos du repo
 }
-const { title, note, logos } = Astro.props;
+const { title, note, type, logos } = Astro.props;
 
-// Repli sans Supabase : logos CM embarqués dans src/assets/clients/cm
+// Repli sans Supabase : logos embarqués dans src/assets/clients/<type>
 const local = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/clients/cm/*.png",
+  "/src/assets/clients/*/*.png",
   { eager: true },
 );
 type Item = { name: string; remote?: string; local?: ImageMetadata };
 const items: Item[] =
   logos.length > 0
     ? logos.map((l) => ({ name: l.name, remote: mediaUrl(l.image_path) ?? "" }))
-    : defaultCmLogos.flatMap((l) => {
-        const img = local[`/src/assets/clients/cm/${l.file}`]?.default;
+    : defaultLogos[type].flatMap((l) => {
+        const img = local[`/src/assets/clients/${type}/${l.file}`]?.default;
         return img ? [{ name: l.name, local: img }] : [];
       });
 
-const logoClass =
-  "max-h-[7.25rem] max-w-[10.5rem] w-auto h-auto object-contain";
+// CM : gros logos, 4 colonnes, note dans la 4e colonne de la dernière ligne.
+// UGC : petits logos de marques, 4 colonnes + note dans une 5e colonne à droite.
+const ugc = type === "ugc";
+const lastRow = Math.max(1, Math.ceil(items.length / 4));
+const logoClass = ugc
+  ? "max-h-[3.75rem] max-w-[9.4rem] w-auto h-auto object-contain"
+  : "max-h-[7.25rem] max-w-[10.5rem] w-auto h-auto object-contain";
 ---
 
 <section class="bg-cream" aria-labelledby="clients-title">
-  <div class="mx-auto max-w-[85rem] px-5 md:px-[5.1%] pt-14 md:pt-24 pb-20 md:pb-28">
+  <div
+    class:list={[
+      "mx-auto max-w-[85rem] px-5",
+      ugc
+        ? "md:px-[4.3%] pt-12 md:pt-14 pb-14"
+        : "md:px-[5.1%] pt-14 md:pt-24 pb-20 md:pb-28",
+    ]}
+  >
     <h2 id="clients-title" class="title text-3xl md:text-5xl text-center">
       {title}
     </h2>
 
-    <ul class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12 lg:gap-y-[3.2rem] items-center lg:max-w-[59rem]">
-      {items.map((l) => (
-        <li class="flex justify-center items-center h-[7.25rem]">
+    <ul
+      style={`--last-row: ${lastRow}`}
+      class:list={[
+        "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 items-center",
+        ugc
+          ? "mt-10 gap-x-8 gap-y-8 lg:gap-y-[1.6rem] lg:grid-cols-[repeat(4,minmax(0,1fr))_13rem]"
+          : "mt-12 gap-x-8 gap-y-12 lg:gap-y-[3.2rem] lg:max-w-[59rem]",
+      ]}
+    >
+      {items.map((l, i) => (
+        <li
+          style={ugc ? `--col: ${(i % 4) + 1}` : undefined}
+          class:list={[
+            "flex justify-center items-center",
+            ugc ? "h-[4.5rem] lg:[grid-column:var(--col)]" : "h-[7.25rem]",
+          ]}
+        >
           {l.local ? (
-            <Image src={l.local} alt={l.name} width={240} class={logoClass} />
+            <Image
+              src={l.local}
+              alt={l.name}
+              width={ugc ? 300 : 240}
+              class={logoClass}
+            />
           ) : (
             <img
               src={l.remote}
@@ -53,7 +85,12 @@ const logoClass =
         </li>
       ))}
       <li
-        class="col-span-2 sm:col-span-1 lg:col-start-4 flex justify-center lg:justify-end"
+        class:list={[
+          "col-span-2 sm:col-span-1 flex justify-center lg:justify-end",
+          ugc
+            ? "lg:col-start-5 lg:[grid-row:var(--last-row)] lg:-mt-16"
+            : "lg:col-start-4",
+        ]}
         aria-hidden="true"
       >
         <div class="relative pt-14 -rotate-[9deg]">

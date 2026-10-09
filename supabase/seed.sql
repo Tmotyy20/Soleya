@@ -54,7 +54,17 @@ Générer de la conversion et de la fidélisation : transformez vos simples abon
   ('community-management', 'cm.packs.cta', 'Community management · Bouton des packs', 'En savoir plus', false, 340),
   ('community-management', 'cm.clients.title', 'Community management · Titre clients', 'J’ai déjà géré les comptes de :', false, 350),
   ('community-management', 'cm.clients.note', 'Community management · Note à côté des logos', 'Il me reste de la
-place pour vous', true, 360)
+place pour vous', true, 360),
+  ('creation-textile', 'tx.hero.title', 'Création textile · Titre', 'Création textile', false, 370),
+  ('creation-textile', 'tx.intro.title', 'Création textile · Titre « Qu''est-ce que c''est ? »', 'Qu’est-ce que c’est ?', false, 380),
+  ('creation-textile', 'tx.intro.text', 'Création textile · Texte', 'Vous souhaitez marquer les esprits lors de votre prochain salon, lancer une collection capsule ou simplement fédérer votre équipe ? La création textile est un atout redoutable et tangible pour diffuser votre image de marque.
+
+Je vous accompagne dans la création de vos vêtements professionnels personnalisés (t-shirts, sweats, tote bags) pour tous vos événements d''entreprise ou vos besoins en goodies :', true, 390),
+  ('creation-textile', 'tx.intro.bullets', 'Création textile · Liste (une ligne par point)', 'Design de t-shirt sur-mesure : je conçois des visuels uniques, modernes et parfaitement alignés avec votre identité visuelle.
+Accompagnement à la production : fini le casse-tête logistique. Une fois le design validé, je vous confie mes meilleurs contacts de fournisseurs textiles et d''imprimeurs de confiance pour lancer la fabrication en toute sérénité.', true, 400),
+  ('creation-textile', 'tx.intro.cta', 'Création textile · Bouton', 'Discutons de votre projet', false, 410),
+  ('creation-textile', 'tx.visual.text', 'Création textile · Texte sur le t-shirt', 'Votre
+logo', true, 420)
 on conflict (key) do nothing;
 
 update public.site_settings set

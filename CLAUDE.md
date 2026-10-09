@@ -74,19 +74,20 @@ Contraste : la maquette met du texte blanc sur `nebula` (titre « Ce que je prop
 ### Maquettes
 - Accueil : `design/maquette-accueil.png` (référence pour toute modification de la page d'accueil)
 - Community management : `design/maquette-community-management.png`
+- Création textile : `design/maquette-creation-textile.png`
 
 ## Arborescence du site public
 Navigation (maquette) : Accueil · À propos · Projets · Contact
 
 1. **Accueil** (fait) : hero rayé, « Ce que je propose » (6 services), à propos, mes projets, mes valeurs, formulaire de contact
-2. **Pages services** (`/services/<slug>`) : hero photo, « Qu'est-ce que c'est ? », packs tarifaires (table `service_packs`), logos clients, valeurs, contact. Fait : `community-management` (lien depuis la carte de l'accueil)
+2. **Pages services** (`/services/<slug>`) : hero photo, « Qu'est-ce que c'est ? », packs tarifaires (table `service_packs`), logos clients, valeurs, contact. Composants réutilisables : `ServiceHero` (titre beurre ou marron), `ServiceIntro` (thème brun ou bleu, visuel en image ou en slot), `PacksSection`, `ClientLogosSection`, `ContactSection` (option `band` : titre dans un bandeau marron). Fait : `community-management`, `creation-textile` (liens depuis les cartes de l'accueil)
 3. **À propos** (`/a-propos`) : page détaillée (lien « En savoir plus sur moi »)
 4. **Projets** (`/projets`) : grille filtrable (Identité visuelle, Print, Community management, Création de contenu, Création textiles) + page détail projet
 5. **Blog** : liste + page article (pas encore dans la navigation de la maquette)
 6. **Contact** : section partagée (`ContactSection`) en bas de chaque page (`#contact`), le formulaire revient sur la page d'origine ; les messages sont enregistrés dans `contact_messages`
 7. Mentions légales et politique de confidentialité (obligatoires, liens dans le footer)
 
-Textes : clés `home.*` (accueil, valeurs, contact) et `cm.*` (community management) de `page_sections`. Packs : `service_packs`. Source unique des valeurs par défaut : `src/content/default-content.json` ; régénérer `supabase/seed.sql` avec `npm run seed:sql` après modification.
+Textes : clés `home.*` (accueil, valeurs, contact) `cm.*` (community management) et `tx.*` (création textile) de `page_sections`. Packs : `service_packs`. Source unique des valeurs par défaut : `src/content/default-content.json` ; régénérer `supabase/seed.sql` avec `npm run seed:sql` après modification.
 
 ## Assets initiaux
 Source : dossier fourni par la cliente (affiches, chartes, logos clients CM, logos UGC, portrait).

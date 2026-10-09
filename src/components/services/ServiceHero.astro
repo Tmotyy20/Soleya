@@ -6,8 +6,10 @@ interface Props {
   title: string;
   image: ImageMetadata;
   imageAlt?: string;
+  /** Couleur du titre : "butter" sur photo sombre, "brown" sur photo claire */
+  tone?: "butter" | "brown";
 }
-const { title, image, imageAlt = "" } = Astro.props;
+const { title, image, imageAlt = "", tone = "butter" } = Astro.props;
 ---
 
 <section class="relative isolate overflow-hidden bg-brown-light">
@@ -21,7 +23,14 @@ const { title, image, imageAlt = "" } = Astro.props;
     class="absolute inset-0 -z-10 size-full object-cover"
   />
   <div class="mx-auto max-w-[85rem] px-5 min-h-[22rem] md:min-h-[41.8rem] grid place-items-center text-center">
-    <h1 class="title text-butter text-4xl md:text-5xl drop-shadow-[0_2px_12px_rgba(70,46,35,0.35)]">
+    <h1
+      class:list={[
+        "title text-4xl md:text-5xl",
+        tone === "butter"
+          ? "text-butter drop-shadow-[0_2px_12px_rgba(70,46,35,0.35)]"
+          : "text-brown drop-shadow-[0_2px_12px_rgba(252,253,246,0.6)]",
+      ]}
+    >
       {title}
     </h1>
   </div>

@@ -13,13 +13,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
-    "@astrojs/cloudflare": "^12.6.13",
+    "@astrojs/cloudflare": "^14.3.4",
     "@fontsource/montserrat": "^5.3.0",
     "@fontsource/poppins": "^5.3.0",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.117.3",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^5.18.2",
+    "astro": "^7.3.8",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   },
